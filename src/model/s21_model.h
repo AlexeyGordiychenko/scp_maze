@@ -14,7 +14,9 @@ class Model {
 
  private:
   bool is_empty_ = true;
-
+  int rows_, cols_;
+  std::vector<bool> r_walls_, b_walls_;
+  void ParseMatrix(std::ifstream& file, std::vector<bool>& data);
   void ClearData();
 };
 }  // namespace s21

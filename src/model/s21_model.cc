@@ -19,26 +19,55 @@ void s21::Model::ParseFile(std::string filename) {
     throw std::runtime_error("Can't open the file.");
   }
 
-  // std::string line;
-  // size_t line_num = 0;
-  // polygons_edges_count_ = 0;
-  // while (std::getline(file, line) && ++line_num) {
-  //   std::istringstream iss(line);
-  //   std::string prefix;
-  //   if (iss >> prefix) {
-  //     if (prefix == "v") {
-  //       if (!ParseVertices(iss)) {
-  //         throw std::runtime_error("Line: " + std::to_string(line_num) +
-  //                                  " failed to read a vertex.");
-  //       }
-  //     } else if (prefix == "f") {
-  //       if (!ParsePolygons(iss)) {
-  //         throw std::runtime_error("Line: " + std::to_string(line_num) +
-  //                                  " failed to read a polygon.");
-  //       }
-  //     }
-  //   }
-  // }
-  file.close();
+  std::string line;
+  char temp = 0;
+  if (std::getline(file, line)) {
+    std::istringstream iss(line);
+    if (!(iss >> rows_ >> cols_)) {
+      throw std::runtime_error("Failed to read size of a maze.");
+    } else if (iss >> temp) {
+      throw std::runtime_error("Too many values for the size of a maze.");
+    }
+  } else {
+    throw std::runtime_error("File is empty.");
+  }
+
+  ParseMatrix(file, r_walls_);
+  ParseMatrix(file, b_walls_);
+
+  if (std::getline(file, line) and !line.empty()) {
+    throw std::runtime_error("Too many rows for a maze.");
+  }
+
   is_empty_ = false;
+}
+
+void s21::Model::ParseMatrix(std::ifstream& file, std::vector<bool>& data) {
+  std::string line;
+  int rows_count = 0;
+  while (rows_count < rows_ && std::getline(file, line)) {
+    if (line.empty()) {
+      continue;
+    }
+    std::istringstream iss(line);
+    char value;
+    for (auto i = 0; i < cols_; ++i) {
+      if (iss >> value) {
+        if (value != '0' && value != '1') {
+          throw std::runtime_error("Matrix values must be 0 or 1.");
+        }
+        data.push_back(bool(value - '0'));
+      } else {
+        throw std::runtime_error("Not enough data for matrix columns.");
+        file.close();
+      }
+    }
+    if (iss >> value) {
+      throw std::runtime_error("Too much data for matrix columns.");
+    }
+    rows_count++;
+  }
+  if (data.size() != size_t(rows_ * cols_)) {
+    throw std::runtime_error("Not enough data for matrix rows.");
+  }
 }
