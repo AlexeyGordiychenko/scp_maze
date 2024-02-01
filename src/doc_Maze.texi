@@ -1,0 +1,59 @@
+\input texinfo
+@setfilename S21_3DViewer_v2.0.info
+
+@settitle S21 3DViewer v2.0 Program Documentation
+
+@titlepage
+@title S21 3DViewer v2.0
+@subtitle Program Documentation
+@author by ternesim
+@end titlepage
+
+@menu
+* Introduction::     
+* Usage::            
+* Buttons:: 
+@end menu
+
+@node Introduction
+@section Introduction
+
+This program, a 3DViewer, is developed using C++17 and follows the principles of object-oriented programming. It employs various design patterns, including Model-View-Controller (MVC), command, singleton, and observer. The graphical user interface (GUI) implementation is based on QT 6.4.3. The program functions as a 3D model explorer, enabling users to adjust a wide range of view parameters, allowing them to appreciate the beauty of each individual 3D object.
+
+For a more user-friendly experience, the program incorporates undo/redo functionality and a history of opened files. The undo/redo feature is implemented using a command template. This template enables the storage of actions and previous states as objects in a stack, allowing the easy undoing of actions when necessary.
+
+In addition, the 3D viewer offers the ability to create a GIF that captures all object transformations and generates images of the object. Given that the GIF creator object exists in a singular form within the program, the Singleton pattern is utilized to ensure the object's uniqueness.
+
+Lastly, the Observer pattern is used to allow the OpenGL widget to observe the main window and adjust its appearance and properties based on the changes in the main window.
+
+@node Usage
+@section Usage
+
+To install the program, you first need to navigate to the directory containing the program's source files. Run 'make install'. After the installation process is completed, you can start the program by running either 'make open' or './install/s21_3DViewer_v2'
+
+@node Available buttons
+@section Available buttons
+
+@multitable @columnfractions 0.2 0.8
+@item Open @tab Open an .obj file
+@item Render @tab Render object's wireframe
+@item Projection @tab Change projection
+@item Screenshot @tab Take a screenshot
+@item GIF @tab Create a gif
+@item Undo @tab Undo last action
+@item Redo @tab Redo last action
+@item Scale @tab Change object's scale
+@item Rotation @tab Change object's rotation
+@item Move @tab Change object's position
+@item Apply @tab Apply affine transformations to the object
+@item Reset @tab Reset object's affine transformations
+@item Background @tab Change background color
+@item Line type @tab Change lines to solid/dashed
+@item Line thickness @tab Change lines thickness
+@item Line color @tab Change lines color
+@item Vertex type @tab Change vertices to none/circle/square
+@item Vertex size @tab Change vertices size
+@item Vertex color @tab Change vertices color
+@end multitable
+
+@bye
