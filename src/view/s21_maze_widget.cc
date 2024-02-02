@@ -25,13 +25,9 @@ void s21::MazeWidget::paintEvent(QPaintEvent* event) {
   QPainter painter(this);
 
   painter.setRenderHint(QPainter::Antialiasing);
-  auto green_pen =
-      QPen(Qt::green, line_width_, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-
-  painter.setPen(green_pen);
+  painter.setPen(QPen(Qt::lightGray, line_width_));
 
   // Draw borders
-  painter.setPen(green_pen);
   painter.drawLine(x_min_, y_min_, x_max_, y_min_);  // top
   painter.drawLine(x_min_, y_max_, x_max_, y_max_);  // bottom
   painter.drawLine(x_min_, y_min_, x_min_, y_max_);  // left
