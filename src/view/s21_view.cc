@@ -37,7 +37,7 @@ void s21::View::RenderMaze() {
   std::string filename = ui_->filePath->currentText().toStdString();
   try {
     controller_->Initialize(filename);
-    ui_->mazeWidget->SetCellSize();
+    ui_->mazeWidget->Initialize();
     ui_->mazeWidget->update();
   } catch (const std::exception& e) {
     QMessageBox err_msg;
