@@ -8,6 +8,10 @@ s21::View::View(Controller* controller, QWidget* parent)
   ui_->setupUi(this);
 
   connect(ui_->openFile, &QPushButton::clicked, this, &View::OpenFile);
+  connect(ui_->filePath, qOverload<int>(&QComboBox::currentIndexChanged), this,
+          &View::FilePathChange);
+
+  ui_->mazeWidget->SetController(controller);
 }
 
 s21::View::~View() { delete ui_; }
@@ -30,21 +34,18 @@ void s21::View::OpenFile() {
 }
 
 void s21::View::RenderMaze() {
-  if (file_changed_) {
-    std::string filename = ui_->filePath->currentText().toStdString();
-    try {
-      controller_->Initialize(filename);
-      file_changed_ = false;
-    } catch (const std::exception& e) {
-      QMessageBox err_msg;
-      err_msg.information(0, "", e.what());
-    }
-    // } else {
-    // controller_->RestoreVertices();
+  std::string filename = ui_->filePath->currentText().toStdString();
+  try {
+    controller_->Initialize(filename);
+    ui_->mazeWidget->SetCellSize();
+    ui_->mazeWidget->update();
+  } catch (const std::exception& e) {
+    QMessageBox err_msg;
+    err_msg.information(0, "", e.what());
   }
 }
 
 void s21::View::FilePathChange(int idx) {
   ui_->filePath->setCurrentIndex(idx);
-  file_changed_ = true;
+  RenderMaze();
 }

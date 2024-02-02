@@ -10,7 +10,11 @@ void s21::Model::Initialize(const std::string filename) {
 
 bool s21::Model::Empty() const { return is_empty_; }
 
-void s21::Model::ClearData() { is_empty_ = true; }
+void s21::Model::ClearData() {
+  r_walls_.clear();
+  b_walls_.clear();
+  is_empty_ = true;
+}
 
 void s21::Model::ParseFile(std::string filename) {
   std::ifstream file(filename);
@@ -71,3 +75,8 @@ void s21::Model::ParseMatrix(std::ifstream& file, std::vector<bool>& data) {
     throw std::runtime_error("Not enough data for matrix rows.");
   }
 }
+
+int s21::Model::GetRows() const { return rows_; }
+int s21::Model::GetCols() const { return cols_; }
+const std::vector<bool>& s21::Model::GetRWalls() const { return r_walls_; }
+const std::vector<bool>& s21::Model::GetBWalls() const { return b_walls_; }

@@ -34,7 +34,6 @@ class View : public QMainWindow {
   Ui::View* ui_;
   Controller* controller_;
   int history_max_list_ = 10;
-  bool file_changed_ = true;
 };
 
 }  // namespace s21

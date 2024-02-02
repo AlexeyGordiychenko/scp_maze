@@ -11,6 +11,10 @@ class Model {
   void Initialize(const std::string filename);
   void ParseFile(std::string filename);
   bool Empty() const;
+  int GetRows() const;
+  int GetCols() const;
+  const std::vector<bool>& GetRWalls() const;
+  const std::vector<bool>& GetBWalls() const;
 
  private:
   bool is_empty_ = true;

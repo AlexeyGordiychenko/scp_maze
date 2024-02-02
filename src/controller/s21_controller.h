@@ -21,6 +21,10 @@ class Controller {
   // Main functions
   void Initialize(const std::string filename);
   bool Empty() const;
+  int GetRows() const;
+  int GetCols() const;
+  const std::vector<bool>& GetRWalls() const;
+  const std::vector<bool>& GetBWalls() const;
 
  private:
   Model* model_;
