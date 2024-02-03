@@ -60,20 +60,20 @@ void s21::MazeWidget::paintEvent(QPaintEvent* event) {
 
   // Draw path's start and end points
   if (!path_start_.isNull() || !path_end_.isNull()) {
-    auto path_edges_size_ =
-        std::min(std::min(cell_width_, cell_height_) / 2, 6);
-    auto k = path_edges_size_ / 2 - 1;
+    auto path_edges_size =
+        std::min(std::min(cell_width_, cell_height_) / 2, 30);
+    auto k = path_edges_size / 2 - 1;
     if (!path_start_.isNull()) {
       painter.setPen(Qt::cyan);
       painter.setBrush(Qt::cyan);
       painter.drawEllipse(path_start_.x() - k, path_start_.y() - k,
-                          path_edges_size_, path_edges_size_);
+                          path_edges_size, path_edges_size);
     }
     if (!path_end_.isNull()) {
       painter.setPen(Qt::magenta);
       painter.setBrush(Qt::magenta);
-      painter.drawRect(path_end_.x() - k, path_end_.y() - k, path_edges_size_,
-                       path_edges_size_);
+      painter.drawRect(path_end_.x() - k, path_end_.y() - k, path_edges_size,
+                       path_edges_size);
     }
   }
 }
