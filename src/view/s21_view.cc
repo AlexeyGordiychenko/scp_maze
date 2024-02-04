@@ -12,6 +12,7 @@ s21::View::View(Controller* controller, QWidget* parent)
           &View::FilePathChange);
 
   ui_->mazeWidget->SetController(controller);
+  ui_->caveWidget->SetController(controller);
 }
 
 s21::View::~View() { delete ui_; }

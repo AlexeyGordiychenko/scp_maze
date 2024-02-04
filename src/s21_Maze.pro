@@ -15,12 +15,15 @@ SOURCES += \
     s21_main.cc \
     view/s21_view.cc \
     view/s21_maze_widget.cc \
+    view/s21_cave_widget.cc \
     model/s21_model.cc \
     controller/s21_controller.cc
 
 HEADERS += \
     view/s21_view.h \
     view/s21_maze_widget.h \
+    view/s21_cave_widget.h \
+    view/s21_value_slider.h \
     model/s21_model.h \
     controller/s21_controller.h
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>610</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>800</width>
-    <height>600</height>
+    <height>610</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>800</width>
-    <height>600</height>
+    <height>610</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -35,65 +35,483 @@
    <property name="minimumSize">
     <size>
      <width>800</width>
-     <height>590</height>
+     <height>600</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
      <width>800</width>
-     <height>590</height>
+     <height>600</height>
     </size>
    </property>
-   <widget class="QPushButton" name="openFile">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>2</x>
-      <y>2</y>
-      <width>109</width>
-      <height>30</height>
+      <x>0</x>
+      <y>0</y>
+      <width>798</width>
+      <height>600</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="mazeTab">
+     <attribute name="title">
+      <string>Maze</string>
+     </attribute>
+     <widget class="QComboBox" name="mazeFilePath">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>10</y>
+        <width>670</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
    border: 2px solid gray;
   border-radius: 8px;
 }</string>
-    </property>
-    <property name="text">
-     <string>Open</string>
-    </property>
-    <property name="default">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="filePath">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>2</y>
-      <width>671</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QComboBox{
+      </property>
+      <property name="currentText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="s21::MazeWidget" name="mazeWidget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>48</y>
+        <width>504</width>
+        <height>504</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="mazeOpenFile">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>108</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
    border: 2px solid gray;
   border-radius: 8px;
 }</string>
-    </property>
-    <property name="currentText">
-     <string/>
-    </property>
-   </widget>
-   <widget class="s21::MazeWidget" name="mazeWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>65</y>
-      <width>504</width>
-      <height>504</height>
-     </rect>
-    </property>
+      </property>
+      <property name="text">
+       <string>Open</string>
+      </property>
+      <property name="icon">
+       <iconset theme="folder-open">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="mazeSizeLabel">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>50</y>
+        <width>90</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Size (RxC)</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="mazeNumRows">
+      <property name="geometry">
+       <rect>
+        <x>625</x>
+        <y>50</y>
+        <width>80</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="decimals">
+       <number>0</number>
+      </property>
+      <property name="minimum">
+       <double>1.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>50.000000000000000</double>
+      </property>
+      <property name="value">
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="mazeNumCols">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>50</y>
+        <width>80</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="decimals">
+       <number>0</number>
+      </property>
+      <property name="minimum">
+       <double>1.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>50.000000000000000</double>
+      </property>
+      <property name="value">
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="mazeGenerateBtn">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>90</y>
+        <width>127</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Generate</string>
+      </property>
+      <property name="icon">
+       <iconset theme="system-run">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="mazeSave">
+      <property name="geometry">
+       <rect>
+        <x>663</x>
+        <y>90</y>
+        <width>127</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Save</string>
+      </property>
+      <property name="icon">
+       <iconset theme="document-save">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="caveTab">
+     <attribute name="title">
+      <string>Cave</string>
+     </attribute>
+     <widget class="QComboBox" name="caveFilePath">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>10</y>
+        <width>670</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+   border: 2px solid gray;
+  border-radius: 8px;
+}</string>
+      </property>
+      <property name="currentText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="caveGenerateBtn">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>230</y>
+        <width>127</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Generate</string>
+      </property>
+      <property name="icon">
+       <iconset theme="system-run">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="caveSave">
+      <property name="geometry">
+       <rect>
+        <x>663</x>
+        <y>230</y>
+        <width>127</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Save</string>
+      </property>
+      <property name="icon">
+       <iconset theme="document-save">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="caveSizeLabel">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>50</y>
+        <width>90</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Size (RxC)</string>
+      </property>
+     </widget>
+     <widget class="s21::CaveWidget" name="caveWidget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>48</y>
+        <width>504</width>
+        <height>504</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="caveOpenFile">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>108</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 8px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Open</string>
+      </property>
+      <property name="icon">
+       <iconset theme="folder-open">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="caveNumCols">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>50</y>
+        <width>80</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="decimals">
+       <number>0</number>
+      </property>
+      <property name="minimum">
+       <double>1.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>50.000000000000000</double>
+      </property>
+      <property name="value">
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="caveNumRows">
+      <property name="geometry">
+       <rect>
+        <x>625</x>
+        <y>50</y>
+        <width>80</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::UpDownArrows</enum>
+      </property>
+      <property name="decimals">
+       <number>0</number>
+      </property>
+      <property name="minimum">
+       <double>1.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>50.000000000000000</double>
+      </property>
+      <property name="value">
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="ValueSlider" name="horizontalSlider">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>125</y>
+        <width>160</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>7</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="caveSizeLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>85</y>
+        <width>260</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Limits</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="caveSizeLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>120</y>
+        <width>90</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Birth</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="caveSizeLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>155</y>
+        <width>90</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Death</string>
+      </property>
+     </widget>
+     <widget class="ValueSlider" name="horizontalSlider_2">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>160</y>
+        <width>160</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>7</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="caveSizeLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>190</y>
+        <width>90</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>The probability that a cell is alive at the initialization of a cave</string>
+      </property>
+      <property name="text">
+       <string>Chance</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="caveNumRows_2">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>190</y>
+        <width>80</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::UpDownArrows</enum>
+      </property>
+      <property name="decimals">
+       <number>0</number>
+      </property>
+      <property name="minimum">
+       <double>0.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>100.000000000000000</double>
+      </property>
+      <property name="value">
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
  </widget>
@@ -104,10 +522,21 @@
    <header>./view/s21_maze_widget.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>ValueSlider</class>
+   <extends>QSlider</extends>
+   <header>./view/s21_value_slider.h</header>
+  </customwidget>
+  <customwidget>
+   <class>s21::CaveWidget</class>
+   <extends>QWidget</extends>
+   <header>./view/s21_cave_widget.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>filePath</tabstop>
-  <tabstop>openFile</tabstop>
+  <tabstop>mazeFilePath</tabstop>
+  <tabstop>mazeOpenFile</tabstop>
  </tabstops>
  <resources/>
  <connections/>
