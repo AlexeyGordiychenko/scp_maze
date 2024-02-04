@@ -1,3 +1,6 @@
+#ifndef S21_MAZE_VALUE_SLIDER_H
+#define S21_MAZE_VALUE_SLIDER_H
+
 #include <QWidget>
 
 class ValueSlider : public QSlider {
@@ -20,3 +23,4 @@ class ValueSlider : public QSlider {
     painter.drawText(knobBoundary, Qt::AlignCenter, strValue);
   }
 };
+#endif  // S21_MAZE_WIDGET_H

@@ -1,5 +1,5 @@
-#ifndef S21_MAZE_V2_MODEL_H
-#define S21_MAZE_V2_MODEL_H
+#ifndef S21_MAZE_MODEL_H
+#define S21_MAZE_MODEL_H
 
 #include <string>
 #include <vector>
@@ -22,4 +22,4 @@ class Model {
   void ClearData();
 };
 }  // namespace s21
-#endif  // S21_MAZE_V2_MODEL_H
+#endif  // S21_MAZE_MODEL_H

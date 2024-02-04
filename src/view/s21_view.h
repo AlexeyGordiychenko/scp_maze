@@ -1,5 +1,5 @@
-#ifndef S21_MAZE_V2_VIEW_H
-#define S21_MAZE_V2_VIEW_H
+#ifndef S21_MAZE_VIEW_H
+#define S21_MAZE_VIEW_H
 
 #include <QMainWindow>
 
@@ -37,4 +37,4 @@ class View : public QMainWindow {
 };
 
 }  // namespace s21
-#endif  // S21_MAZE_V2_VIEW_H
+#endif  // S21_MAZE_VIEW_H

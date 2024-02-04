@@ -1,5 +1,5 @@
-#ifndef S21_MAZE_V2_CONTROLLER_H
-#define S21_MAZE_V2_CONTROLLER_H
+#ifndef S21_MAZE_CONTROLLER_H
+#define S21_MAZE_CONTROLLER_H
 
 #include <string>
 #include <vector>
@@ -30,4 +30,4 @@ class Controller {
   Model* model_;
 };
 }  // namespace s21
-#endif  // S21_MAZE_V2_CONTROLLER_H
+#endif  // S21_MAZE_CONTROLLER_H
