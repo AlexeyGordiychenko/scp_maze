@@ -25,6 +25,7 @@ HEADERS += \
     view/s21_cave_widget.h \
     view/s21_value_slider.h \
     model/s21_model.h \
+    model/s21_parser.h \
     controller/s21_controller.h
 
 FORMS += \
