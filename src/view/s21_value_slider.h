@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+namespace s21 {
+
 class ValueSlider : public QSlider {
  public:
   ValueSlider(QWidget* parent = nullptr) : QSlider(parent) {}
@@ -23,4 +25,5 @@ class ValueSlider : public QSlider {
     painter.drawText(knobBoundary, Qt::AlignCenter, strValue);
   }
 };
+}  // namespace s21
 #endif  // S21_MAZE_WIDGET_H

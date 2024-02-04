@@ -396,7 +396,7 @@
        <double>1.000000000000000</double>
       </property>
      </widget>
-     <widget class="ValueSlider" name="horizontalSlider">
+     <widget class="s21::ValueSlider" name="horizontalSlider">
       <property name="geometry">
        <rect>
         <x>630</x>
@@ -454,7 +454,7 @@
        <string>Death</string>
       </property>
      </widget>
-     <widget class="ValueSlider" name="horizontalSlider_2">
+     <widget class="s21::ValueSlider" name="horizontalSlider_2">
       <property name="geometry">
        <rect>
         <x>630</x>
@@ -523,7 +523,7 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ValueSlider</class>
+   <class>s21::ValueSlider</class>
    <extends>QSlider</extends>
    <header>./view/s21_value_slider.h</header>
   </customwidget>
