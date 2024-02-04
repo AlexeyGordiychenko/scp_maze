@@ -4,17 +4,17 @@
 
 s21::Controller::~Controller() {}
 
-void s21::Controller::Initialize(const std::string filename) {
-  model_->Initialize(filename);
+void s21::Controller::InitializeMaze(const std::string filename) {
+  model_->InitializeMaze(filename);
 }
 
-bool s21::Controller::Empty() const { return model_->Empty(); }
+bool s21::Controller::EmptyMaze() const { return model_->EmptyMaze(); }
 
-int s21::Controller::GetRows() const { return model_->GetRows(); }
-int s21::Controller::GetCols() const { return model_->GetCols(); }
-const std::vector<bool>& s21::Controller::GetRWalls() const {
-  return model_->GetRWalls();
+int s21::Controller::GetMazeRows() const { return model_->GetMazeRows(); }
+int s21::Controller::GetMazeCols() const { return model_->GetMazeCols(); }
+const std::vector<bool>& s21::Controller::GetMazeRWalls() const {
+  return model_->GetMazeRWalls();
 }
-const std::vector<bool>& s21::Controller::GetBWalls() const {
-  return model_->GetBWalls();
+const std::vector<bool>& s21::Controller::GetMazeBWalls() const {
+  return model_->GetMazeBWalls();
 }

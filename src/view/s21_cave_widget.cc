@@ -12,12 +12,12 @@ void s21::CaveWidget::SetController(Controller* controller) {
 }
 
 void s21::CaveWidget::Initialize() {
-  cell_width_ = x_max_ / controller_->GetCols();
-  cell_height_ = y_max_ / controller_->GetRows();
+  // cell_width_ = x_max_ / controller_->GetCols();
+  // cell_height_ = y_max_ / controller_->GetRows();
 }
 
 void s21::CaveWidget::paintEvent(QPaintEvent* event) {
-  if (controller_->Empty()) {
-    return;
-  }
+  // if (controller_->Empty()) {
+  //   return;
+  // }
 }

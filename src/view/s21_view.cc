@@ -37,7 +37,7 @@ void s21::View::OpenFile() {
 void s21::View::RenderMaze() {
   std::string filename = ui_->mazeFilePath->currentText().toStdString();
   try {
-    controller_->Initialize(filename);
+    controller_->InitializeMaze(filename);
     ui_->mazeWidget->Initialize();
     ui_->mazeWidget->update();
   } catch (const std::exception& e) {

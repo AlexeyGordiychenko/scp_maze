@@ -4,22 +4,21 @@
 #include <string>
 #include <vector>
 
+#include "s21_maze.h"
+
 namespace s21 {
 
 class Model {
  public:
-  void Initialize(const std::string filename);
-  bool Empty() const;
-  int GetRows() const;
-  int GetCols() const;
-  const std::vector<bool>& GetRWalls() const;
-  const std::vector<bool>& GetBWalls() const;
+  void InitializeMaze(const std::string filename);
+  bool EmptyMaze() const;
+  int GetMazeRows() const;
+  int GetMazeCols() const;
+  const std::vector<bool>& GetMazeRWalls() const;
+  const std::vector<bool>& GetMazeBWalls() const;
 
  private:
-  bool is_empty_ = true;
-  int rows_, cols_;
-  std::vector<bool> r_walls_, b_walls_;
-  void ClearData();
+  Maze maze_;
 };
 }  // namespace s21
 #endif  // S21_MAZE_MODEL_H

@@ -12,14 +12,14 @@ void s21::MazeWidget::SetController(Controller* controller) {
 }
 
 void s21::MazeWidget::Initialize() {
-  cell_width_ = x_max_ / controller_->GetCols();
-  cell_height_ = y_max_ / controller_->GetRows();
+  cell_width_ = x_max_ / controller_->GetMazeCols();
+  cell_height_ = y_max_ / controller_->GetMazeRows();
   path_start_ = QPoint();
   path_end_ = QPoint();
 }
 
 void s21::MazeWidget::paintEvent(QPaintEvent* event) {
-  if (controller_->Empty()) {
+  if (controller_->EmptyMaze()) {
     return;
   }
   QPainter painter(this);
@@ -34,9 +34,9 @@ void s21::MazeWidget::paintEvent(QPaintEvent* event) {
   painter.drawLine(x_max_, y_min_, x_max_, y_max_);  // right
 
   // Draw the maze
-  auto r_walls = controller_->GetRWalls();
-  auto b_walls = controller_->GetBWalls();
-  auto rows = controller_->GetRows(), cols = controller_->GetCols();
+  auto r_walls = controller_->GetMazeRWalls();
+  auto b_walls = controller_->GetMazeBWalls();
+  auto rows = controller_->GetMazeRows(), cols = controller_->GetMazeCols();
   auto idx = 0;
   for (auto y = 0; y < rows; ++y) {
     for (auto x = 0; x < cols; ++x, ++idx) {

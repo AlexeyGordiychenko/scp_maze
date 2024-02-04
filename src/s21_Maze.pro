@@ -17,6 +17,7 @@ SOURCES += \
     view/s21_maze_widget.cc \
     view/s21_cave_widget.cc \
     model/s21_model.cc \
+    model/s21_maze.cc \
     controller/s21_controller.cc
 
 HEADERS += \
@@ -26,6 +27,7 @@ HEADERS += \
     view/s21_value_slider.h \
     model/s21_model.h \
     model/s21_parser.h \
+    model/s21_maze.h \
     controller/s21_controller.h
 
 FORMS += \
