@@ -1,15 +1,6 @@
 #include "s21_maze_widget.h"
 
 #include "../controller/s21_controller.h"
-#include "s21_view.h"
-
-s21::MazeWidget::MazeWidget(QWidget* parent) : QWidget(parent) {
-  setFixedSize(x_min_ + x_max_, y_min_ + y_max_);
-}
-
-void s21::MazeWidget::SetController(Controller* controller) {
-  controller_ = controller;
-}
 
 void s21::MazeWidget::Initialize() {
   cell_width_ = x_max_ / controller_->GetMazeCols();

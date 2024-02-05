@@ -22,6 +22,7 @@ SOURCES += \
 
 HEADERS += \
     view/s21_view.h \
+    view/s21_labyrinth_widget.h \
     view/s21_maze_widget.h \
     view/s21_cave_widget.h \
     view/s21_value_slider.h \

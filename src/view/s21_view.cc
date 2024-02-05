@@ -3,6 +3,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include "s21_labyrinth_widget.h"
+
 s21::View::View(Controller* controller, QWidget* parent)
     : QMainWindow(parent), ui_(new Ui::View), controller_(controller) {
   ui_->setupUi(this);

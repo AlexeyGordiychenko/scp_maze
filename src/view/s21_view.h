@@ -12,6 +12,7 @@ class View;
 
 namespace s21 {
 
+class Labyrinth;
 class View : public QMainWindow {
   Q_OBJECT
 
