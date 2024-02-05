@@ -19,12 +19,19 @@ class Controller {
   ~Controller();
 
   // Main functions
+  // Maze
   void InitializeMaze(const std::string filename);
   bool EmptyMaze() const;
   int GetMazeRows() const;
   int GetMazeCols() const;
   const std::vector<bool>& GetMazeRWalls() const;
   const std::vector<bool>& GetMazeBWalls() const;
+  // Cave
+  void InitializeCave(const std::string filename);
+  bool EmptyCave() const;
+  int GetCaveRows() const;
+  int GetCaveCols() const;
+  const std::vector<bool>& GetCaveCells() const;
 
  private:
   Model* model_;

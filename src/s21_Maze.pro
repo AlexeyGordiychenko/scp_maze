@@ -18,6 +18,7 @@ SOURCES += \
     view/s21_cave_widget.cc \
     model/s21_model.cc \
     model/s21_maze.cc \
+    model/s21_cave.cc \
     controller/s21_controller.cc
 
 HEADERS += \
@@ -29,6 +30,7 @@ HEADERS += \
     model/s21_model.h \
     model/s21_parser.h \
     model/s21_maze.h \
+    model/s21_cave.h \
     controller/s21_controller.h
 
 FORMS += \

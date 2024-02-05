@@ -26,9 +26,11 @@ class View : public QMainWindow {
   ~View();
 
  private slots:
-  void OpenFile();
-  void RenderMaze();
-  void FilePathChange(int idx);
+  void OpenMazeFile();
+  void OpenCaveFile();
+  void OpenFile(QComboBox* file_path);
+  void Render(Labyrinth* element);
+  void FilePathChange(int idx, QComboBox* element);
 
  private:
   // Variables

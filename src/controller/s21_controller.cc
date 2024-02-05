@@ -18,3 +18,15 @@ const std::vector<bool>& s21::Controller::GetMazeRWalls() const {
 const std::vector<bool>& s21::Controller::GetMazeBWalls() const {
   return model_->GetMazeBWalls();
 }
+
+void s21::Controller::InitializeCave(const std::string filename) {
+  model_->InitializeCave(filename);
+}
+
+bool s21::Controller::EmptyCave() const { return model_->EmptyCave(); }
+
+int s21::Controller::GetCaveRows() const { return model_->GetCaveRows(); }
+int s21::Controller::GetCaveCols() const { return model_->GetCaveCols(); }
+const std::vector<bool>& s21::Controller::GetCaveCells() const {
+  return model_->GetCaveCells();
+}
