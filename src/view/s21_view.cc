@@ -11,10 +11,10 @@ s21::View::View(Controller* controller, QWidget* parent)
 
   connect(ui_->mazeOpenFile, &QPushButton::clicked, this, &View::OpenMazeFile);
   connect(ui_->caveOpenFile, &QPushButton::clicked, this, &View::OpenCaveFile);
-  connect(ui_->mazeFilePath, qOverload<int>(&QComboBox::currentIndexChanged),
-          this, [this](int idx) { FilePathChange(idx, ui_->mazeFilePath); });
-  connect(ui_->caveFilePath, qOverload<int>(&QComboBox::currentIndexChanged),
-          this, [this](int idx) { FilePathChange(idx, ui_->caveFilePath); });
+  connect(ui_->mazeFilePath, (&QComboBox::currentIndexChanged), this,
+          [this]() { FilePathChange(ui_->mazeFilePath); });
+  connect(ui_->caveFilePath, (&QComboBox::currentIndexChanged), this,
+          [this]() { FilePathChange(ui_->caveFilePath); });
 
   ui_->mazeWidget->SetController(controller);
   ui_->caveWidget->SetController(controller);
@@ -40,7 +40,7 @@ void s21::View::OpenFile(QComboBox* file_path) {
     file_path->addItem(filename);
     index = count;
   }
-  FilePathChange(index, file_path);
+  file_path->setCurrentIndex(index);
 }
 
 void s21::View::Render(s21::Labyrinth* element) {
@@ -48,8 +48,7 @@ void s21::View::Render(s21::Labyrinth* element) {
   element->update();
 }
 
-void s21::View::FilePathChange(int idx, QComboBox* element) {
-  element->setCurrentIndex(idx);
+void s21::View::FilePathChange(QComboBox* element) {
   std::string filename = element->currentText().toStdString();
   try {
     if (element == ui_->mazeFilePath) {

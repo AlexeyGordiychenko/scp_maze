@@ -30,7 +30,7 @@ class View : public QMainWindow {
   void OpenCaveFile();
   void OpenFile(QComboBox* file_path);
   void Render(Labyrinth* element);
-  void FilePathChange(int idx, QComboBox* element);
+  void FilePathChange(QComboBox* element);
 
  private:
   // Variables
