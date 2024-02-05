@@ -10,19 +10,12 @@ void s21::MazeWidget::Initialize() {
 }
 
 void s21::MazeWidget::paintEvent(QPaintEvent* event) {
+  QPainter painter(this);
+  PaintInitialState(painter);
+
   if (controller_->EmptyMaze()) {
     return;
   }
-  QPainter painter(this);
-
-  painter.setRenderHint(QPainter::Antialiasing);
-  painter.setPen(QPen(Qt::lightGray, line_width_));
-
-  // Draw borders
-  painter.drawLine(x_min_, y_min_, x_max_, y_min_);  // top
-  painter.drawLine(x_min_, y_max_, x_max_, y_max_);  // bottom
-  painter.drawLine(x_min_, y_min_, x_min_, y_max_);  // left
-  painter.drawLine(x_max_, y_min_, x_max_, y_max_);  // right
 
   // Draw the maze
   auto r_walls = controller_->GetMazeRWalls();

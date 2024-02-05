@@ -1,6 +1,7 @@
 #ifndef S21_MAZE_LABYRINT_WIDGET_H
 #define S21_MAZE_LABYRINT_WIDGET_H
 
+#include <QPainter>
 #include <QWidget>
 
 namespace s21 {
@@ -21,6 +22,18 @@ class Labyrinth : public QWidget {
 
   // Functions
   void SetController(Controller* controller) { controller_ = controller; };
+  void PaintInitialState(QPainter& painter) {
+    painter.fillRect(rect(), QBrush(QColor(63, 63, 63)));
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setPen(QPen(Qt::lightGray, line_width_));
+    painter.setBrush(Qt::lightGray);
+
+    // Draw borders
+    painter.drawLine(x_min_, y_min_, x_max_, y_min_);  // top
+    painter.drawLine(x_min_, y_max_, x_max_, y_max_);  // bottom
+    painter.drawLine(x_min_, y_min_, x_min_, y_max_);  // left
+    painter.drawLine(x_max_, y_min_, x_max_, y_max_);  // right
+  };
   virtual void Initialize() = 0;
 
  protected:

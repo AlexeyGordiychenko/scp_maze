@@ -8,20 +8,12 @@ void s21::CaveWidget::Initialize() {
 }
 
 void s21::CaveWidget::paintEvent(QPaintEvent* event) {
+  QPainter painter(this);
+  PaintInitialState(painter);
+
   if (controller_->EmptyCave()) {
     return;
   }
-
-  QPainter painter(this);
-  painter.setRenderHint(QPainter::Antialiasing);
-  painter.setPen(QPen(Qt::lightGray, line_width_));
-  painter.setBrush(Qt::lightGray);
-
-  // Draw borders
-  painter.drawLine(x_min_, y_min_, x_max_, y_min_);  // top
-  painter.drawLine(x_min_, y_max_, x_max_, y_max_);  // bottom
-  painter.drawLine(x_min_, y_min_, x_min_, y_max_);  // left
-  painter.drawLine(x_max_, y_min_, x_max_, y_max_);  // right
 
   // Draw the cave
   auto cells = controller_->GetCaveCells();
