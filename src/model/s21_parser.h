@@ -12,7 +12,8 @@ namespace s21 {
 class Parser {
  public:
   template <typename... Args>
-  std::tuple<int, int> ParseFile(std::string filename, Args&... args) {
+  std::tuple<int, int> ParseFile(std::string filename,
+                                 std::string str_labirynth, Args&... args) {
     std::ifstream file(filename);
 
     if (!file.is_open()) {
@@ -25,9 +26,11 @@ class Parser {
     if (std::getline(file, line)) {
       std::istringstream iss(line);
       if (!(iss >> rows >> cols)) {
-        throw std::runtime_error("Failed to read size of a maze.");
+        throw std::runtime_error("Failed to read size of a " + str_labirynth +
+                                 ".");
       } else if (iss >> temp) {
-        throw std::runtime_error("Too many values for the size of a maze.");
+        throw std::runtime_error("Too many values for the size of a " +
+                                 str_labirynth + ".");
       }
     } else {
       throw std::runtime_error("File is empty.");
@@ -36,7 +39,8 @@ class Parser {
     (ParseMatrix(file, rows, cols, args), ...);
 
     while (std::getline(file, line)) {
-      if (!line.empty()) throw std::runtime_error("Too many rows for a maze.");
+      if (!line.empty())
+        throw std::runtime_error("Too many rows for a " + str_labirynth + ".");
     }
     return {rows, cols};
   }
