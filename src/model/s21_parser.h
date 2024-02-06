@@ -42,6 +42,11 @@ class Parser {
       if (!line.empty())
         throw std::runtime_error("Too many rows for a " + str_labirynth + ".");
     }
+
+    if (rows > 50 or cols > 50) {
+      throw std::runtime_error("Size of a " + str_labirynth +
+                               " is more than 50x50.");
+    }
     return {rows, cols};
   }
 
