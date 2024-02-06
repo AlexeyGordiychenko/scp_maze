@@ -27,6 +27,11 @@ bool s21::Controller::EmptyCave() const { return model_->EmptyCave(); }
 
 int s21::Controller::GetCaveRows() const { return model_->GetCaveRows(); }
 int s21::Controller::GetCaveCols() const { return model_->GetCaveCols(); }
+
 const std::vector<bool>& s21::Controller::GetCaveCells() const {
   return model_->GetCaveCells();
+}
+
+void s21::Controller::GenerateCave(int chance, int rows, int cols) {
+  return model_->GenerateCave(chance, rows, cols);
 }

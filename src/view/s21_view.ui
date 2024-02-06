@@ -486,7 +486,7 @@
        <string>Chance</string>
       </property>
      </widget>
-     <widget class="QDoubleSpinBox" name="caveNumRows_2">
+     <widget class="QDoubleSpinBox" name="caveChance">
       <property name="geometry">
        <rect>
         <x>630</x>

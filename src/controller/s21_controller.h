@@ -32,6 +32,7 @@ class Controller {
   int GetCaveRows() const;
   int GetCaveCols() const;
   const std::vector<bool>& GetCaveCells() const;
+  void GenerateCave(int chance, int rows, int cols);
 
  private:
   Model* model_;

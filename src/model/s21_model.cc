@@ -25,3 +25,6 @@ int s21::Model::GetCaveCols() const { return cave_.GetCols(); }
 const std::vector<bool>& s21::Model::GetCaveCells() const {
   return cave_.GetCells();
 }
+void s21::Model::GenerateCave(int chance, int rows, int cols) {
+  cave_.GenerateCave(chance, rows, cols);
+}

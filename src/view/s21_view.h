@@ -31,6 +31,7 @@ class View : public QMainWindow {
   void OpenFile(QComboBox* file_path);
   void Render(Labyrinth* element);
   void FilePathChange(QComboBox* element);
+  void GenerateLabiryth(QComboBox* element);
 
  private:
   // Variables

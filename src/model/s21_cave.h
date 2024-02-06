@@ -13,6 +13,7 @@ class Cave {
   int GetRows() const;
   int GetCols() const;
   const std::vector<bool>& GetCells() const;
+  void GenerateCave(int chance, int rows, int cols);
 
  private:
   bool is_empty_ = true;

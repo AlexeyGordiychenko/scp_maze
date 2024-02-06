@@ -16,6 +16,9 @@ s21::View::View(Controller* controller, QWidget* parent)
   connect(ui_->caveFilePath, (&QComboBox::currentIndexChanged), this,
           [this]() { FilePathChange(ui_->caveFilePath); });
 
+  connect(ui_->caveGenerateBtn, &QPushButton::clicked, this,
+          [this]() { GenerateLabiryth(ui_->caveFilePath); });
+
   ui_->mazeWidget->SetController(controller);
   ui_->caveWidget->SetController(controller);
 }
@@ -50,6 +53,9 @@ void s21::View::Render(s21::Labyrinth* element) {
 
 void s21::View::FilePathChange(QComboBox* element) {
   std::string filename = element->currentText().toStdString();
+  if (filename.empty()) return;
+  auto index = element->findText("");
+  if (index) element->removeItem(index);
   try {
     if (element == ui_->mazeFilePath) {
       controller_->InitializeMaze(filename);
@@ -61,5 +67,20 @@ void s21::View::FilePathChange(QComboBox* element) {
   } catch (const std::exception& e) {
     QMessageBox err_msg;
     err_msg.information(0, "", e.what());
+  }
+}
+
+void s21::View::GenerateLabiryth(QComboBox* element) {
+  std::string filename = element->currentText().toStdString();
+  if (!filename.empty()) {
+    element->addItem("");
+    element->setCurrentIndex(element->count());
+  }
+  if (element == ui_->mazeFilePath) {
+  } else if (element == ui_->caveFilePath) {
+    controller_->GenerateCave(ui_->caveChance->value(),
+                              ui_->caveNumRows->value(),
+                              ui_->caveNumCols->value());
+    Render(ui_->caveWidget);
   }
 }
