@@ -35,8 +35,8 @@ class Parser {
 
     (ParseMatrix(file, rows, cols, args), ...);
 
-    if (std::getline(file, line) and !line.empty()) {
-      throw std::runtime_error("Too many rows for a maze.");
+    while (std::getline(file, line)) {
+      if (!line.empty()) throw std::runtime_error("Too many rows for a maze.");
     }
     return {rows, cols};
   }
