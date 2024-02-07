@@ -37,3 +37,40 @@ void s21::Cave::GenerateCave(int chance, int rows, int cols) {
   }
   is_empty_ = false;
 }
+
+void s21::Cave::CellularAutomaton(int birth_limit, int death_limit) {
+  std::vector<bool> new_cells(rows_ * cols_);
+  for (int row = 0; row < rows_; ++row) {
+    for (int col = 0; col < cols_; ++col) {
+      int alive_neighbors = CountNeighbors(row, col);
+      bool is_alive = cells_[row * cols_ + col];
+
+      if (is_alive && (alive_neighbors < death_limit)) {
+        new_cells[row * cols_ + col] = false;
+      } else if (!is_alive && (alive_neighbors > birth_limit)) {
+        new_cells[row * cols_ + col] = true;
+      } else {
+        new_cells[row * cols_ + col] = is_alive;
+      }
+    }
+  }
+  cells_ = new_cells;
+}
+
+int s21::Cave::CountNeighbors(int row, int col) {
+  int count = 0;
+  for (int dr = -1; dr <= 1; ++dr) {
+    for (int dc = -1; dc <= 1; ++dc) {
+      if (dr == 0 && dc == 0) continue;
+
+      int nb_row = row + dr;
+      int nb_col = col + dc;
+
+      if (nb_row < 0 || nb_col < 0 || nb_row >= rows_ || nb_col >= cols_ ||
+          cells_[nb_row * cols_ + nb_col]) {
+        ++count;
+      }
+    }
+  }
+  return count;
+}

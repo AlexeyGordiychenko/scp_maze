@@ -21,6 +21,9 @@ s21::View::View(Controller* controller, QWidget* parent)
   connect(ui_->caveGenerateBtn, &QPushButton::clicked, this,
           [this]() { GenerateLabiryth(ui_->caveFilePath); });
 
+  connect(ui_->caveNextStep, &QPushButton::clicked, this,
+          &View::GenerateCaveNextStep);
+
   ui_->mazeWidget->SetController(controller);
   ui_->caveWidget->SetController(controller);
 }
@@ -85,4 +88,10 @@ void s21::View::GenerateLabiryth(QComboBox* element) {
                               ui_->caveNumCols->value());
     Render(ui_->caveWidget);
   }
+}
+
+void s21::View::GenerateCaveNextStep() {
+  controller_->CaveCellularAutomaton(ui_->caveBirthSlider->value(),
+                                     ui_->caveDeathSlider->value());
+  Render(ui_->caveWidget);
 }

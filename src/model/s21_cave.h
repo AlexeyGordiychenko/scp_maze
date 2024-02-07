@@ -14,12 +14,14 @@ class Cave {
   int GetCols() const;
   const std::vector<bool>& GetCells() const;
   void GenerateCave(int chance, int rows, int cols);
+  void CellularAutomaton(int birth_limit, int death_limit);
 
  private:
   bool is_empty_ = true;
   int rows_, cols_;
   std::vector<bool> cells_;
   void ClearData();
+  int CountNeighbors(int row, int col);
 };
 }  // namespace s21
 #endif  // S21_MAZE_CAVE_H

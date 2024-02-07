@@ -35,3 +35,7 @@ const std::vector<bool>& s21::Controller::GetCaveCells() const {
 void s21::Controller::GenerateCave(int chance, int rows, int cols) {
   return model_->GenerateCave(chance, rows, cols);
 }
+
+void s21::Controller::CaveCellularAutomaton(int birth_limit, int death_limit) {
+  return model_->CaveCellularAutomaton(birth_limit, death_limit);
+}
