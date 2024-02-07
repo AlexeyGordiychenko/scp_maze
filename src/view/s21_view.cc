@@ -9,6 +9,8 @@ s21::View::View(Controller* controller, QWidget* parent)
     : QMainWindow(parent), ui_(new Ui::View), controller_(controller) {
   ui_->setupUi(this);
 
+  ui_->tabWidget->setCurrentIndex(0);
+
   connect(ui_->mazeOpenFile, &QPushButton::clicked, this, &View::OpenMazeFile);
   connect(ui_->caveOpenFile, &QPushButton::clicked, this, &View::OpenCaveFile);
   connect(ui_->mazeFilePath, (&QComboBox::currentIndexChanged), this,
