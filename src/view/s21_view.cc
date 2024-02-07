@@ -11,6 +11,17 @@ s21::View::View(Controller* controller, QWidget* parent)
 
   ui_->tabWidget->setCurrentIndex(0);
 
+  // Stop the play timer if any of the buttons is pressed
+  connect(ui_->caveOpenFile, &QPushButton::clicked, this, &View::StopTimer);
+  connect(ui_->tabWidget, (&QTabWidget::currentChanged), this,
+          &View::StopTimer);
+  connect(ui_->caveFilePath, (&QComboBox::currentIndexChanged), this,
+          &View::StopTimer);
+  connect(ui_->caveGenerateBtn, &QPushButton::clicked, this, &View::StopTimer);
+  connect(ui_->caveNextStep, &QPushButton::clicked, this, &View::StopTimer);
+  connect(ui_->caveSaveBtn, &QPushButton::clicked, this, &View::StopTimer);
+
+  // Normal slots
   connect(ui_->mazeOpenFile, &QPushButton::clicked, this, &View::OpenMazeFile);
   connect(ui_->caveOpenFile, &QPushButton::clicked, this, &View::OpenCaveFile);
   connect(ui_->mazeFilePath, (&QComboBox::currentIndexChanged), this,
@@ -23,6 +34,8 @@ s21::View::View(Controller* controller, QWidget* parent)
 
   connect(ui_->caveNextStep, &QPushButton::clicked, this,
           &View::GenerateCaveNextStep);
+  connect(ui_->cavePlay, &QPushButton::clicked, this, &View::GenerateCavePlay);
+  connect(&timer_, &QTimer::timeout, this, &View::GenerateCaveNextStep);
 
   ui_->mazeWidget->SetController(controller);
   ui_->caveWidget->SetController(controller);
@@ -91,7 +104,30 @@ void s21::View::GenerateLabiryth(QComboBox* element) {
 }
 
 void s21::View::GenerateCaveNextStep() {
-  controller_->CaveCellularAutomaton(ui_->caveBirthSlider->value(),
-                                     ui_->caveDeathSlider->value());
-  Render(ui_->caveWidget);
+  auto res = controller_->CaveCellularAutomaton(ui_->caveBirthSlider->value(),
+                                                ui_->caveDeathSlider->value());
+  if (res)
+    Render(ui_->caveWidget);
+  else
+    StopTimer();
+}
+
+void s21::View::GenerateCavePlay() {
+  if (timer_.isActive()) {
+    StopTimer();
+  } else {
+    StartTimer();
+  }
+}
+
+void s21::View::StopTimer() {
+  timer_.stop();
+  ui_->cavePlay->setIcon(QIcon::fromTheme("media-playback-start"));
+  ui_->cavePlay->setText("Play");
+}
+
+void s21::View::StartTimer() {
+  timer_.start(ui_->caveDelay->value());
+  ui_->cavePlay->setIcon(QIcon::fromTheme("media-playback-stop"));
+  ui_->cavePlay->setText("Stop");
 }

@@ -38,8 +38,9 @@ void s21::Cave::GenerateCave(int chance, int rows, int cols) {
   is_empty_ = false;
 }
 
-void s21::Cave::CellularAutomaton(int birth_limit, int death_limit) {
+bool s21::Cave::CellularAutomaton(int birth_limit, int death_limit) {
   std::vector<bool> new_cells(rows_ * cols_);
+  bool res = false;
   for (int row = 0; row < rows_; ++row) {
     for (int col = 0; col < cols_; ++col) {
       int alive_neighbors = CountNeighbors(row, col);
@@ -47,14 +48,17 @@ void s21::Cave::CellularAutomaton(int birth_limit, int death_limit) {
 
       if (is_alive && (alive_neighbors < death_limit)) {
         new_cells[row * cols_ + col] = false;
+        res = true;
       } else if (!is_alive && (alive_neighbors > birth_limit)) {
         new_cells[row * cols_ + col] = true;
+        res = true;
       } else {
         new_cells[row * cols_ + col] = is_alive;
       }
     }
   }
   cells_ = new_cells;
+  return res;
 }
 
 int s21::Cave::CountNeighbors(int row, int col) {

@@ -2,6 +2,7 @@
 #define S21_MAZE_VIEW_H
 
 #include <QMainWindow>
+#include <QTimer>
 
 #include "../controller/s21_controller.h"
 #include "ui_s21_view.h"
@@ -33,12 +34,16 @@ class View : public QMainWindow {
   void FilePathChange(QComboBox* element);
   void GenerateLabiryth(QComboBox* element);
   void GenerateCaveNextStep();
+  void GenerateCavePlay();
+  void StopTimer();
+  void StartTimer();
 
  private:
   // Variables
   Ui::View* ui_;
   Controller* controller_;
   int history_max_list_ = 10;
+  QTimer timer_;
 };
 
 }  // namespace s21

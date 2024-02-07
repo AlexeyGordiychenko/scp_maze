@@ -14,7 +14,7 @@ class Cave {
   int GetCols() const;
   const std::vector<bool>& GetCells() const;
   void GenerateCave(int chance, int rows, int cols);
-  void CellularAutomaton(int birth_limit, int death_limit);
+  bool CellularAutomaton(int birth_limit, int death_limit);
 
  private:
   bool is_empty_ = true;
