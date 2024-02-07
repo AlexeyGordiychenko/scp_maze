@@ -368,7 +368,7 @@
        <double>50.000000000000000</double>
       </property>
       <property name="value">
-       <double>1.000000000000000</double>
+       <double>50.000000000000000</double>
       </property>
      </widget>
      <widget class="QDoubleSpinBox" name="caveNumRows">
@@ -393,7 +393,7 @@
        <double>50.000000000000000</double>
       </property>
       <property name="value">
-       <double>1.000000000000000</double>
+       <double>50.000000000000000</double>
       </property>
      </widget>
      <widget class="s21::ValueSlider" name="caveBirthSlider">
