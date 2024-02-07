@@ -252,7 +252,7 @@
       <property name="geometry">
        <rect>
         <x>530</x>
-        <y>230</y>
+        <y>130</y>
         <width>127</width>
         <height>30</height>
        </rect>
@@ -274,11 +274,11 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="caveSave">
+     <widget class="QPushButton" name="caveSaveBtn">
       <property name="geometry">
        <rect>
         <x>663</x>
-        <y>230</y>
+        <y>130</y>
         <width>127</width>
         <height>30</height>
        </rect>
@@ -396,11 +396,11 @@
        <double>1.000000000000000</double>
       </property>
      </widget>
-     <widget class="s21::ValueSlider" name="horizontalSlider">
+     <widget class="s21::ValueSlider" name="caveBirthSlider">
       <property name="geometry">
        <rect>
         <x>630</x>
-        <y>125</y>
+        <y>210</y>
         <width>160</width>
         <height>20</height>
        </rect>
@@ -412,27 +412,27 @@
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="caveSizeLabel_2">
+     <widget class="QLabel" name="caveCellularAutomatonLabel">
       <property name="geometry">
        <rect>
         <x>530</x>
-        <y>85</y>
+        <y>170</y>
         <width>260</width>
         <height>30</height>
        </rect>
       </property>
       <property name="text">
-       <string>Limits</string>
+       <string>Cellular automaton</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="caveSizeLabel_3">
+     <widget class="QLabel" name="caveBirthLabel">
       <property name="geometry">
        <rect>
         <x>530</x>
-        <y>120</y>
+        <y>205</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -441,11 +441,11 @@
        <string>Birth</string>
       </property>
      </widget>
-     <widget class="QLabel" name="caveSizeLabel_4">
+     <widget class="QLabel" name="caveDeathLabel">
       <property name="geometry">
        <rect>
         <x>530</x>
-        <y>155</y>
+        <y>240</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -454,11 +454,11 @@
        <string>Death</string>
       </property>
      </widget>
-     <widget class="s21::ValueSlider" name="horizontalSlider_2">
+     <widget class="s21::ValueSlider" name="caveDeathSlider">
       <property name="geometry">
        <rect>
         <x>630</x>
-        <y>160</y>
+        <y>245</y>
         <width>160</width>
         <height>20</height>
        </rect>
@@ -470,11 +470,11 @@
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="caveSizeLabel_5">
+     <widget class="QLabel" name="caveChanceLabel">
       <property name="geometry">
        <rect>
         <x>530</x>
-        <y>190</y>
+        <y>90</y>
         <width>90</width>
         <height>30</height>
        </rect>
@@ -489,8 +489,8 @@
      <widget class="QDoubleSpinBox" name="caveChance">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>190</y>
+        <x>625</x>
+        <y>90</y>
         <width>80</width>
         <height>30</height>
        </rect>
@@ -508,7 +508,116 @@
        <double>100.000000000000000</double>
       </property>
       <property name="value">
-       <double>1.000000000000000</double>
+       <double>50.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="caveNextStep">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>320</y>
+        <width>127</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Next step</string>
+      </property>
+      <property name="icon">
+       <iconset theme="media-skip-forward">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cavePlay">
+      <property name="geometry">
+       <rect>
+        <x>663</x>
+        <y>320</y>
+        <width>127</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Play</string>
+      </property>
+      <property name="icon">
+       <iconset theme="media-playback-start">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="caveDelayLabel">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>275</y>
+        <width>90</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>The probability that a cell is alive at the initialization of a cave</string>
+      </property>
+      <property name="text">
+       <string>Delay</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="caveDelay">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>275</y>
+        <width>80</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::UpDownArrows</enum>
+      </property>
+      <property name="decimals">
+       <number>0</number>
+      </property>
+      <property name="minimum">
+       <double>0.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>10000.000000000000000</double>
+      </property>
+      <property name="value">
+       <double>100.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QLabel" name="caveDelayMSLabel">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>275</y>
+        <width>60</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>The probability that a cell is alive at the initialization of a cave</string>
+      </property>
+      <property name="text">
+       <string>ms</string>
       </property>
      </widget>
     </widget>
