@@ -9,8 +9,6 @@ s21::View::View(Controller* controller, QWidget* parent)
     : QMainWindow(parent), ui_(new Ui::View), controller_(controller) {
   ui_->setupUi(this);
 
-  ui_->tabWidget->setCurrentIndex(0);
-
   // Stop the play timer if any of the buttons is pressed
   connect(ui_->caveOpenFile, &QPushButton::clicked, this, &View::StopTimer);
   connect(ui_->tabWidget, (&QTabWidget::currentChanged), this,
