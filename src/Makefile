@@ -85,12 +85,12 @@ open:
 
 gcov_report: $(TEST_GCOV)
 	mkdir -p $(GCOV_DIR)
-	gcovr --html-details -o $(GCOV_DIR)/index.html --filter $(MODEL_DIR)/s21_\.\*
+	gcovr --html-details -o $(GCOV_DIR)/index.html --filter $(MODEL_DIR)/s21_maze.cc --filter $(MODEL_DIR)/s21_cave.cc
 	open $(GCOV_DIR)/index.html
 
 lcov_report: $(TEST_GCOV)
 	mkdir -p $(GCOV_DIR)
-	lcov --capture --directory $(SRC_DIR) --exclude "$(CURDIR)/tests/*" --output-file $(GCOV_DIR)/coverage.info --no-external
+	lcov --capture --directory $(SRC_DIR) --include "$(CURDIR)/model/s21_maze.cc" --include "$(CURDIR)/model/s21_cave.cc" --output-file $(GCOV_DIR)/coverage.info --no-external
 	genhtml -o $(GCOV_DIR) $(GCOV_DIR)/coverage.info 
 	open $(GCOV_DIR)/index.html
 
