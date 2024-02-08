@@ -26,6 +26,8 @@ class Model {
   const std::vector<bool>& GetCaveCells() const;
   void GenerateCave(int chance, int rows, int cols);
   bool CaveCellularAutomaton(int birth_limit, int death_limit);
+  void SaveMaze(const std::string filename);
+  void SaveCave(const std::string filename);
 
  private:
   Maze maze_;

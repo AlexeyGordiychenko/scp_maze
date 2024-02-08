@@ -37,6 +37,11 @@ s21::View::View(Controller* controller, QWidget* parent)
   connect(ui_->cavePlay, &QPushButton::clicked, this, &View::GenerateCavePlay);
   connect(&timer_, &QTimer::timeout, this, &View::GenerateCaveNextStep);
 
+  connect(ui_->mazeSaveBtn, &QPushButton::clicked, this,
+          [this]() { SaveLabyrinth(ui_->mazeFilePath); });
+  connect(ui_->caveSaveBtn, &QPushButton::clicked, this,
+          [this]() { SaveLabyrinth(ui_->caveFilePath); });
+
   ui_->mazeWidget->SetController(controller);
   ui_->caveWidget->SetController(controller);
 }
@@ -130,4 +135,29 @@ void s21::View::StartTimer() {
   timer_.start(ui_->caveDelay->value());
   ui_->cavePlay->setIcon(QIcon::fromTheme("media-playback-stop"));
   ui_->cavePlay->setText("Stop");
+}
+
+void s21::View::SaveLabyrinth(QComboBox* element) {
+  auto labyrinth_text = ui_->tabWidget->tabText(ui_->tabWidget->currentIndex());
+  QFileDialog save_dialog(this);
+  save_dialog.setDefaultSuffix(".txt");
+  QString file_name = save_dialog.getSaveFileName(
+      this, labyrinth_text + " saving", "", "Text files (*.txt)");
+  if (!file_name.isEmpty()) {
+    if (QFileInfo(file_name).suffix().isEmpty()) {
+      file_name += ".txt";
+    }
+    QString msg_text = labyrinth_text + " saved successfully.";
+    try {
+      if (element == ui_->mazeFilePath) {
+        controller_->SaveMaze(file_name.toStdString());
+      } else if (element == ui_->caveFilePath) {
+        controller_->SaveCave(file_name.toStdString());
+      }
+    } catch (const std::exception& e) {
+      msg_text = e.what();
+    }
+    QMessageBox msg;
+    msg.information(0, "", msg_text);
+  }
 }

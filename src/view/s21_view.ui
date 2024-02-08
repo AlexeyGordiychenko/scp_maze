@@ -198,7 +198,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="mazeSave">
+     <widget class="QPushButton" name="mazeSaveBtn">
       <property name="geometry">
        <rect>
         <x>663</x>

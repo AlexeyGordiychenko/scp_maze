@@ -80,6 +80,33 @@ class Labirynth {
       throw std::runtime_error("Not enough data for matrix rows.");
     }
   }
+
+  template <typename... Args>
+  void SaveToFile(std::string filename, int rows, int cols,
+                  const Args&... args) {
+    std::ofstream file(filename);
+
+    if (!file.is_open()) {
+      throw std::runtime_error("Can't open the file for saving.");
+    }
+
+    file << rows << " " << cols;
+
+    (SaveMatrix(file, rows, cols, args), ...);
+
+    file.close();
+  }
+
+  void SaveMatrix(std::ofstream& file, int rows, int cols,
+                  const std::vector<bool>& data) {
+    file << "\n";
+    for (auto row = 0; row < rows; ++row) {
+      for (auto col = 0; col < cols; ++col) {
+        file << (data[row * cols + col] ? "1" : "0") << " ";
+      }
+      file << "\n";
+    }
+  }
 };
 }  // namespace s21
 #endif  // S21_MAZE_LABIRYNTH_H

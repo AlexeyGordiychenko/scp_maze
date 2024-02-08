@@ -39,3 +39,11 @@ void s21::Controller::GenerateCave(int chance, int rows, int cols) {
 bool s21::Controller::CaveCellularAutomaton(int birth_limit, int death_limit) {
   return model_->CaveCellularAutomaton(birth_limit, death_limit);
 }
+
+void s21::Controller::SaveMaze(const std::string filename) {
+  model_->SaveMaze(filename);
+}
+
+void s21::Controller::SaveCave(const std::string filename) {
+  model_->SaveCave(filename);
+}

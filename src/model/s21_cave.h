@@ -17,6 +17,7 @@ class Cave : public Labirynth {
   const std::vector<bool>& GetCells() const;
   void GenerateCave(int chance, int rows, int cols);
   bool CellularAutomaton(int birth_limit, int death_limit);
+  void Save(const std::string filename);
 
  private:
   bool is_empty_ = true;

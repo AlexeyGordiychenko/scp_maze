@@ -75,3 +75,7 @@ int s21::Cave::CountNeighbors(int row, int col) {
   }
   return count;
 }
+
+void s21::Cave::Save(const std::string filename) {
+  SaveToFile(filename, rows_, cols_, cells_);
+}

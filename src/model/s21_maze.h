@@ -16,6 +16,7 @@ class Maze : public Labirynth {
   int GetCols() const;
   const std::vector<bool>& GetRWalls() const;
   const std::vector<bool>& GetBWalls() const;
+  void Save(const std::string filename);
 
  private:
   bool is_empty_ = true;

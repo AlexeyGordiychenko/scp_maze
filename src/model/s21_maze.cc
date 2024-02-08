@@ -20,3 +20,7 @@ int s21::Maze::GetRows() const { return rows_; }
 int s21::Maze::GetCols() const { return cols_; }
 const std::vector<bool>& s21::Maze::GetRWalls() const { return r_walls_; }
 const std::vector<bool>& s21::Maze::GetBWalls() const { return b_walls_; }
+
+void s21::Maze::Save(const std::string filename) {
+  SaveToFile(filename, rows_, cols_, r_walls_, b_walls_);
+}
