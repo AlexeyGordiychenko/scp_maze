@@ -1,6 +1,7 @@
 #ifndef S21_MAZE_CAVE_H
 #define S21_MAZE_CAVE_H
 
+#include <random>
 #include <string>
 #include <vector>
 
@@ -15,7 +16,8 @@ class Cave : public Labyrinth {
   int GetRows() const;
   int GetCols() const;
   const std::vector<bool>& GetCells() const;
-  void GenerateCave(int chance, int rows, int cols);
+  void GenerateCave(int chance, int rows, int cols,
+                    unsigned seed = std::random_device{}());
   bool CellularAutomaton(int birth_limit, int death_limit);
   void Save(const std::string filename);
 

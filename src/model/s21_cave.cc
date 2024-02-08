@@ -1,5 +1,6 @@
 #include "s21_cave.h"
 
+#include <algorithm>
 #include <random>
 #include <tuple>
 
@@ -20,19 +21,25 @@ int s21::Cave::GetRows() const { return rows_; }
 int s21::Cave::GetCols() const { return cols_; }
 const std::vector<bool>& s21::Cave::GetCells() const { return cells_; }
 
-void s21::Cave::GenerateCave(int chance, int rows, int cols) {
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_real_distribution<> dis(0, 100);
-  rows_ = rows;
-  cols_ = cols;
+void s21::Cave::GenerateCave(int chance, int rows, int cols, unsigned seed) {
+  rows_ = (rows >= 0) ? rows : 0;
+  cols_ = (cols >= 0) ? cols : 0;
+  chance = std::clamp(chance, 0, 100);
   cells_.clear();
-  for (auto i = 0; i < rows; ++i) {
-    for (auto j = 0; j < cols; ++j) {
-      cells_.push_back(static_cast<bool>(dis(gen) <= chance));
+  is_empty_ = !(rows_ && cols_);
+  if (!is_empty_) {
+    if (chance == 0 || chance == 100) {
+      cells_.resize(rows_ * cols_, chance == 100);
+    } else {
+      std::mt19937 gen(seed);
+      std::uniform_real_distribution<> dis(0, 100);
+      for (auto i = 0; i < rows_; ++i) {
+        for (auto j = 0; j < cols_; ++j) {
+          cells_.push_back(static_cast<bool>(dis(gen) <= chance));
+        }
+      }
     }
   }
-  is_empty_ = false;
 }
 
 bool s21::Cave::CellularAutomaton(int birth_limit, int death_limit) {
