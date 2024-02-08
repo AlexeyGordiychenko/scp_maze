@@ -8,6 +8,7 @@ void s21::CaveWidget::Initialize() {
 }
 
 void s21::CaveWidget::paintEvent(QPaintEvent* event) {
+  Q_UNUSED(event);
   QPainter painter(this);
   PaintInitialState(painter);
 

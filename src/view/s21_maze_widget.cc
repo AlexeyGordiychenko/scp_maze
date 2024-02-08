@@ -10,6 +10,7 @@ void s21::MazeWidget::Initialize() {
 }
 
 void s21::MazeWidget::paintEvent(QPaintEvent* event) {
+  Q_UNUSED(event);
   QPainter painter(this);
   PaintInitialState(painter);
 
