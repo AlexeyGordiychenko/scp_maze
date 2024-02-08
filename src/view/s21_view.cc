@@ -28,7 +28,7 @@ s21::View::View(Controller* controller, QWidget* parent)
           [this]() { FilePathChange(ui_->caveFilePath); });
 
   connect(ui_->caveGenerateBtn, &QPushButton::clicked, this,
-          [this]() { GenerateLabiryth(ui_->caveFilePath); });
+          [this]() { GenerateLabyrinth(ui_->caveFilePath); });
 
   connect(ui_->caveNextStep, &QPushButton::clicked, this,
           &View::GenerateCaveNextStep);
@@ -67,7 +67,7 @@ void s21::View::OpenFile(QComboBox* file_path) {
   file_path->setCurrentIndex(index);
 }
 
-void s21::View::Render(s21::Labyrinth* element) {
+void s21::View::Render(s21::LabyrinthWidget* element) {
   element->Initialize();
   element->update();
 }
@@ -91,7 +91,7 @@ void s21::View::FilePathChange(QComboBox* element) {
   }
 }
 
-void s21::View::GenerateLabiryth(QComboBox* element) {
+void s21::View::GenerateLabyrinth(QComboBox* element) {
   std::string filename = element->currentText().toStdString();
   if (!filename.empty()) {
     element->addItem("");

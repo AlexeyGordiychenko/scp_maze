@@ -13,7 +13,8 @@ class View;
 
 namespace s21 {
 
-class Labyrinth;
+class LabyrinthWidget;
+
 class View : public QMainWindow {
   Q_OBJECT
 
@@ -30,9 +31,9 @@ class View : public QMainWindow {
   void OpenMazeFile();
   void OpenCaveFile();
   void OpenFile(QComboBox* file_path);
-  void Render(Labyrinth* element);
+  void Render(LabyrinthWidget* element);
   void FilePathChange(QComboBox* element);
-  void GenerateLabiryth(QComboBox* element);
+  void GenerateLabyrinth(QComboBox* element);
   void GenerateCaveNextStep();
   void GenerateCavePlay();
   void StopTimer();

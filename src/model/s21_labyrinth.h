@@ -1,5 +1,5 @@
-#ifndef S21_MAZE_LABIRYNTH_H
-#define S21_MAZE_LABIRYNTH_H
+#ifndef S21_MAZE_LABYRINTH_H
+#define S21_MAZE_LABYRINTH_H
 
 #include <fstream>
 #include <sstream>
@@ -9,11 +9,11 @@
 
 namespace s21 {
 
-class Labirynth {
+class Labyrinth {
  protected:
   template <typename... Args>
   std::tuple<int, int> ParseFile(std::string filename,
-                                 std::string str_labirynth, Args&... args) {
+                                 std::string str_labyrinth, Args&... args) {
     std::ifstream file(filename);
 
     if (!file.is_open()) {
@@ -26,11 +26,11 @@ class Labirynth {
     if (std::getline(file, line)) {
       std::istringstream iss(line);
       if (!(iss >> rows >> cols)) {
-        throw std::runtime_error("Failed to read size of a " + str_labirynth +
+        throw std::runtime_error("Failed to read size of a " + str_labyrinth +
                                  ".");
       } else if (iss >> temp) {
         throw std::runtime_error("Too many values for the size of a " +
-                                 str_labirynth + ".");
+                                 str_labyrinth + ".");
       }
     } else {
       throw std::runtime_error("File is empty.");
@@ -40,11 +40,11 @@ class Labirynth {
 
     while (std::getline(file, line)) {
       if (!line.empty())
-        throw std::runtime_error("Too many rows for a " + str_labirynth + ".");
+        throw std::runtime_error("Too many rows for a " + str_labyrinth + ".");
     }
 
     if (rows > 50 or cols > 50) {
-      throw std::runtime_error("Size of a " + str_labirynth +
+      throw std::runtime_error("Size of a " + str_labyrinth +
                                " is more than 50x50.");
     }
     return {rows, cols};
@@ -109,4 +109,4 @@ class Labirynth {
   }
 };
 }  // namespace s21
-#endif  // S21_MAZE_LABIRYNTH_H
+#endif  // S21_MAZE_LABYRINTH_H

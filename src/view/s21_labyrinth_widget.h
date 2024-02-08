@@ -8,17 +8,17 @@ namespace s21 {
 
 class Controller;
 
-class Labyrinth : public QWidget {
+class LabyrinthWidget : public QWidget {
  public:
   // Constructors
-  explicit Labyrinth(QWidget* parent = nullptr) : QWidget(parent) {
+  explicit LabyrinthWidget(QWidget* parent = nullptr) : QWidget(parent) {
     setFixedSize(x_min_ + x_max_, y_min_ + y_max_);
   };
 
-  Labyrinth(const Labyrinth&) = delete;
-  Labyrinth& operator=(const Labyrinth&) = delete;
-  Labyrinth(Labyrinth&&) = delete;
-  Labyrinth& operator=(Labyrinth&&) = delete;
+  LabyrinthWidget(const LabyrinthWidget&) = delete;
+  LabyrinthWidget& operator=(const LabyrinthWidget&) = delete;
+  LabyrinthWidget(LabyrinthWidget&&) = delete;
+  LabyrinthWidget& operator=(LabyrinthWidget&&) = delete;
 
   // Functions
   void SetController(Controller* controller) { controller_ = controller; };

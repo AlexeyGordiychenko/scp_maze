@@ -9,11 +9,11 @@ namespace s21 {
 
 class Controller;
 
-class CaveWidget : public Labyrinth {
+class CaveWidget : public LabyrinthWidget {
   Q_OBJECT
  public:
   // Constructors
-  using Labyrinth::Labyrinth;
+  using LabyrinthWidget::LabyrinthWidget;
 
   // Functions
   void Initialize() override;
