@@ -19,8 +19,6 @@ class Maze : public Labyrinth {
   void Save(const std::string filename);
 
  private:
-  bool is_empty_ = true;
-  int rows_, cols_;
   std::vector<bool> r_walls_, b_walls_;
   void ClearData();
 };

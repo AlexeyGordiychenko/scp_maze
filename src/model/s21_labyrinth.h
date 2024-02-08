@@ -107,6 +107,9 @@ class Labyrinth {
       file << "\n";
     }
   }
+
+  bool is_empty_ = true;
+  int rows_ = 0, cols_ = 0;
 };
 }  // namespace s21
 #endif  // S21_MAZE_LABYRINTH_H

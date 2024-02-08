@@ -22,8 +22,6 @@ class Cave : public Labyrinth {
   void Save(const std::string filename);
 
  private:
-  bool is_empty_ = true;
-  int rows_, cols_;
   std::vector<bool> cells_;
   void ClearData();
   int CountNeighbors(int row, int col);
