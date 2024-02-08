@@ -1,5 +1,5 @@
-#ifndef S21_MAZE_PARSER_H
-#define S21_MAZE_PARSER_H
+#ifndef S21_MAZE_LABIRYNTH_H
+#define S21_MAZE_LABIRYNTH_H
 
 #include <fstream>
 #include <sstream>
@@ -9,8 +9,8 @@
 
 namespace s21 {
 
-class Parser {
- public:
+class Labirynth {
+ protected:
   template <typename... Args>
   std::tuple<int, int> ParseFile(std::string filename,
                                  std::string str_labirynth, Args&... args) {
@@ -50,7 +50,6 @@ class Parser {
     return {rows, cols};
   }
 
- private:
   void ParseMatrix(std::ifstream& file, int rows, int cols,
                    std::vector<bool>& data) {
     std::string line;
@@ -83,4 +82,4 @@ class Parser {
   }
 };
 }  // namespace s21
-#endif  // S21_MAZE_PARSER_H
+#endif  // S21_MAZE_LABIRYNTH_H

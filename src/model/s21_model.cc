@@ -2,8 +2,6 @@
 
 #include <tuple>
 
-#include "s21_parser.h"
-
 void s21::Model::InitializeMaze(const std::string filename) {
   maze_.Initialize(filename);
 }

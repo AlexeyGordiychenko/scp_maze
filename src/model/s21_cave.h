@@ -4,9 +4,11 @@
 #include <string>
 #include <vector>
 
+#include "s21_labirynth.h"
+
 namespace s21 {
 
-class Cave {
+class Cave : public Labirynth {
  public:
   void Initialize(const std::string filename);
   bool Empty() const;

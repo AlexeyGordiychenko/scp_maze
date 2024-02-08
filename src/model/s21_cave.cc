@@ -3,12 +3,9 @@
 #include <random>
 #include <tuple>
 
-#include "s21_parser.h"
-
 void s21::Cave::Initialize(const std::string filename) {
   ClearData();
-  auto parser = s21::Parser();
-  std::tie(rows_, cols_) = parser.ParseFile(filename, "cave", cells_);
+  std::tie(rows_, cols_) = ParseFile(filename, "cave", cells_);
   is_empty_ = false;
 }
 

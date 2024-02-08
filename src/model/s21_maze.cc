@@ -2,13 +2,9 @@
 
 #include <tuple>
 
-#include "s21_parser.h"
-
 void s21::Maze::Initialize(const std::string filename) {
   ClearData();
-  auto parser = s21::Parser();
-  std::tie(rows_, cols_) =
-      parser.ParseFile(filename, "maze", r_walls_, b_walls_);
+  std::tie(rows_, cols_) = ParseFile(filename, "maze", r_walls_, b_walls_);
   is_empty_ = false;
 }
 

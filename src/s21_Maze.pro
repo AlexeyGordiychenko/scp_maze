@@ -28,6 +28,7 @@ HEADERS += \
     view/s21_cave_widget.h \
     view/s21_value_slider.h \
     model/s21_model.h \
+    model/s21_labirynth.h \
     model/s21_parser.h \
     model/s21_maze.h \
     model/s21_cave.h \
