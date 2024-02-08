@@ -8,7 +8,7 @@
 class CaveTestCase : public ::testing::Test {
  protected:
   int kRndSeed = 42;
-  void TestCaveAlgorithm(s21::Cave cave_init, s21::Cave cave_res,
+  void TestCaveAlgorithm(s21::Cave& cave_init, s21::Cave& cave_res,
                          int birth_limit, int death_limit, int steps) {
     int count = 0;
     while (cave_init.CellularAutomaton(birth_limit, death_limit)) {

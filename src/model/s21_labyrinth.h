@@ -10,6 +10,13 @@
 namespace s21 {
 
 class Labyrinth {
+ public:
+  explicit Labyrinth() = default;
+  Labyrinth(const Labyrinth&) = delete;
+  Labyrinth& operator=(const Labyrinth&) = delete;
+  Labyrinth(Labyrinth&&) = delete;
+  Labyrinth& operator=(Labyrinth&&) = delete;
+
  protected:
   template <typename... Args>
   std::tuple<int, int> ParseFile(std::string filename,
