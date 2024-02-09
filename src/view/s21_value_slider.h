@@ -18,12 +18,11 @@ class ValueSlider : public QSlider {
     QPainter painter(this);
     QStyleOptionSlider opt;
     initStyleOption(&opt);
-    QRect knobBoundary = style()->subControlRect(QStyle::CC_Slider, &opt,
-                                                 QStyle::SC_SliderHandle, this);
-    int value = this->value();
-    QString strValue = QString::number(value);
-    painter.drawText(knobBoundary, Qt::AlignCenter, strValue);
+    QRect knob_rect = style()->subControlRect(QStyle::CC_Slider, &opt,
+                                              QStyle::SC_SliderHandle, this);
+    painter.drawText(knob_rect, Qt::AlignCenter,
+                     QString::number(this->value()));
   }
 };
 }  // namespace s21
-#endif  // S21_MAZE_WIDGET_H
+#endif  // S21_MAZE_VALUE_SLIDER_H
