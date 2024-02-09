@@ -36,6 +36,7 @@ class Controller {
   bool CaveCellularAutomaton(int birth_limit, int death_limit);
   void SaveMaze(const std::string filename);
   void SaveCave(const std::string filename);
+  void GenerateMaze(int r, int c);
 
  private:
   Model* model_;

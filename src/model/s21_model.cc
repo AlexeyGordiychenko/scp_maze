@@ -33,3 +33,7 @@ bool s21::Model::CaveCellularAutomaton(int birth_limit, int death_limit) {
 
 void s21::Model::SaveMaze(const std::string filename) { maze_.Save(filename); }
 void s21::Model::SaveCave(const std::string filename) { cave_.Save(filename); }
+
+void s21::Model::GenerateMaze(int rows, int cols) {
+  maze_.GenerateMaze(rows, cols);
+}

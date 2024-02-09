@@ -15,6 +15,7 @@ class Labyrinth {
   Labyrinth(const Labyrinth&) = delete;
   Labyrinth& operator=(const Labyrinth&) = delete;
   Labyrinth(Labyrinth&&) = delete;
+  Labyrinth(bool is_empty, int rows, int cols);
   Labyrinth& operator=(Labyrinth&&) = delete;
 
  protected:
@@ -118,5 +119,9 @@ class Labyrinth {
   bool is_empty_ = true;
   int rows_ = 0, cols_ = 0;
 };
+
+inline Labyrinth::Labyrinth(bool is_empty, int rows, int cols)
+    : is_empty_(is_empty), rows_(rows), cols_(cols) {}
+
 }  // namespace s21
 #endif  // S21_MAZE_LABYRINTH_H

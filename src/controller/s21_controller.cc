@@ -47,3 +47,7 @@ void s21::Controller::SaveMaze(const std::string filename) {
 void s21::Controller::SaveCave(const std::string filename) {
   model_->SaveCave(filename);
 }
+
+void s21::Controller::GenerateMaze(int rows, int cols) {
+  model_->GenerateMaze(rows, cols);
+}

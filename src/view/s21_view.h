@@ -39,6 +39,7 @@ class View : public QMainWindow {
   void StopTimer();
   void StartTimer();
   void SaveLabyrinth(QComboBox* element);
+  void GenerateMaze();
 
  private:
   // Variables

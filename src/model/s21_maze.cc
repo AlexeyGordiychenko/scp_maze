@@ -2,6 +2,13 @@
 
 #include <tuple>
 
+s21::Maze::Maze(bool is_empty, int rows, int cols,
+                const std::vector<bool> r_walls,
+                const std::vector<bool> b_walls)
+    : s21::Labyrinth(is_empty, rows, cols),
+      r_walls_(r_walls),
+      b_walls_(b_walls) {}
+
 void s21::Maze::Initialize(const std::string filename) {
   ClearData();
   std::tie(rows_, cols_) = ParseFile(filename, "maze", r_walls_, b_walls_);
@@ -23,4 +30,14 @@ const std::vector<bool>& s21::Maze::GetBWalls() const { return b_walls_; }
 
 void s21::Maze::Save(const std::string filename) {
   SaveToFile(filename, rows_, cols_, r_walls_, b_walls_);
+}
+
+void s21::Maze::GenerateMaze(int rows, int cols) {
+  MazeGenerator gen;
+  Maze maze = gen.GenerateMaze(cols, rows, true);
+  cols_ = cols;
+  rows_ = rows;
+  r_walls_ = maze.r_walls_;
+  b_walls_ = maze.b_walls_;
+  is_empty_ = false;
 }

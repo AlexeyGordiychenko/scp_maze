@@ -6,6 +6,7 @@
 
 #include "s21_cave.h"
 #include "s21_maze.h"
+#include "s21_mazegenerator.h"
 
 namespace s21 {
 
@@ -29,9 +30,12 @@ class Model {
   void SaveMaze(const std::string filename);
   void SaveCave(const std::string filename);
 
+  void GenerateMaze(int rows, int cols);
+
  private:
   Maze maze_;
   Cave cave_;
+  MazeGenerator maze_generator_;
 };
 }  // namespace s21
 #endif  // S21_MAZE_MODEL_H
