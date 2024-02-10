@@ -13,6 +13,7 @@ QMAKE_CXXFLAGS += -fmax-errors=1
 
 SOURCES += \
     model/s21_mazegenerator.cc \
+    model/s21_pathfiner.cc \
     s21_main.cc \
     view/s21_view.cc \
     view/s21_maze_widget.cc \
@@ -24,6 +25,7 @@ SOURCES += \
 
 HEADERS += \
     model/s21_mazegenerator.h \
+    model/s21_pathfiner.h \
     view/s21_view.h \
     view/s21_labyrinth_widget.h \
     view/s21_maze_widget.h \
