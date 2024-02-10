@@ -1,7 +1,9 @@
 #ifndef S21_MAZE_CONTROLLER_H
 #define S21_MAZE_CONTROLLER_H
 
+#include <stack>
 #include <string>
+#include <tuple>
 #include <vector>
 
 namespace s21 {
@@ -37,7 +39,8 @@ class Controller {
   void SaveMaze(const std::string filename);
   void SaveCave(const std::string filename);
   void GenerateMaze(int r, int c);
-    void FindPath(std::pair<int, int> start, std::pair<int, int> end);
+  std::stack<std::pair<int, int>> FindPath(std::pair<int, int> start,
+                                           std::pair<int, int> end);
 
  private:
   Model* model_;

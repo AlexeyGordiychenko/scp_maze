@@ -29,5 +29,4 @@ class MazeGenerator {
   bool IsBottomWall(int m, int n) { return bottom_walls_[m][n] == 1; }
 };
 }  // namespace s21
-
-#endif
+#endif  // S21_MAZE_MAZEGENERATOR_H

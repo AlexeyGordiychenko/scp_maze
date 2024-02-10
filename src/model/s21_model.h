@@ -29,8 +29,8 @@ class Model {
   bool CaveCellularAutomaton(int birth_limit, int death_limit);
   void SaveMaze(const std::string filename);
   void SaveCave(const std::string filename);
-    void FindPath(std::pair<int, int> start, std::pair<int, int> end);
-
+  std::stack<pair<int, int>> FindPath(std::pair<int, int> start,
+                                      std::pair<int, int> end);
   void GenerateMaze(int rows, int cols);
 
  private:

@@ -60,31 +60,42 @@ void s21::MazeWidget::paintEvent(QPaintEvent* event) {
       painter.drawRect(path_end_.x() - k, path_end_.y() - k, path_edges_size,
                        path_edges_size);
     }
+
+    // Draw path
+    if (!path_start_.isNull() && !path_end_.isNull()) {
+      std::stack<std::pair<int, int>> path = controller_->FindPath(
+          {path_start_.y() / cell_height_, path_start_.x() / cell_width_},
+          {path_end_.y() / cell_height_, path_end_.x() / cell_width_});
+      auto begin = path.top();
+      path.pop();
+      int x1 = cell_width_ * begin.second + cell_width_ / 2;
+      int y1 = cell_height_ * begin.first + cell_height_ / 2;
+      int size = path.size();
+      for (int i = 0; i < size; ++i) {
+        auto p = path.top();
+        path.pop();
+        int x2 = cell_width_ * p.second + cell_width_ / 2;
+        int y2 = cell_height_ * p.first + cell_height_ / 2;
+        painter.drawLine(x1, y1, x2, y2);
+        x1 = x2;
+        y1 = y2;
+      }
+    }
   }
 }
 
 void s21::MazeWidget::mousePressEvent(QMouseEvent* event) {
-    if (cell_width_ != 0 && cell_height_ != 0) {
-        int x = event->position().x();
-        int y = event->position().y();
-        int col = (x - x_min_) / cell_width_ * cell_width_ + cell_width_ / 2;
-        int row = (y - y_min_) / cell_height_ * cell_height_ + cell_height_ / 2;
-        if (event->buttons() & Qt::LeftButton) {
-            path_start_ = QPoint(col, row);
-        } else {
-            path_end_ = QPoint(col, row);
-        }
-
-        if (!path_start_.isNull() && !path_end_.isNull()) {
-            controller_->FindPath(
-                        {
-                            path_start_.x() / cell_width_,
-                            path_start_.y() / cell_height_
-                        },{
-                            path_end_.x() / cell_width_,
-                            path_end_.y() / cell_height_
-                        });
-        }
-        update();
+  if (cell_width_ != 0 && cell_height_ != 0) {
+    int x = event->position().x();
+    int y = event->position().y();
+    int col = (x - x_min_) / cell_width_ * cell_width_ + cell_width_ / 2;
+    int row = (y - y_min_) / cell_height_ * cell_height_ + cell_height_ / 2;
+    if (event->buttons() & Qt::LeftButton) {
+      path_start_ = QPoint(col, row);
+    } else {
+      path_end_ = QPoint(col, row);
     }
+
+    update();
+  }
 }

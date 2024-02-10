@@ -42,11 +42,9 @@ void s21::Maze::GenerateMaze(int rows, int cols) {
   is_empty_ = false;
 }
 
-std::stack<std::pair<int, int> > s21::Maze::FindPath(std::pair<int, int> start, std::pair<int, int> end) {
-    //PathFinder pathfinder(r_walls_, b_walls_, rows_, cols_);
-    //std::stack<std::pair<int, int>> path = pathfinder.FindPath(start, end);
-    // Now you can use the 'path' variable as needed
-
-//    std::cout <<
-//                 "Nearest square center indexes for pixel " << pathfinder.FindPath(start, end, this).size();
+std::stack<std::pair<int, int>> s21::Maze::FindPath(std::pair<int, int> start,
+                                                    std::pair<int, int> end) {
+  PathFinder pathfinder(r_walls_, b_walls_, rows_, cols_);
+  std::stack<pair<int, int>> path = pathfinder.FindPath(start, end);
+  return path;
 }
