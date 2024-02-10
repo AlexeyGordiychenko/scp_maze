@@ -44,6 +44,11 @@ void s21::Maze::GenerateMaze(int rows, int cols) {
 
 std::stack<std::pair<int, int>> s21::Maze::FindPath(std::pair<int, int> start,
                                                     std::pair<int, int> end) {
+  if (start.first >= rows_ || end.first >= rows_ || start.second >= cols_ ||
+      end.second >= cols_) {
+    std::stack<pair<int, int>> path;
+    return path;
+  }
   PathFinder pathfinder(r_walls_, b_walls_, rows_, cols_);
   std::stack<pair<int, int>> path = pathfinder.FindPath(start, end);
   return path;

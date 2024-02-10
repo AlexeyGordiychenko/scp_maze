@@ -66,19 +66,21 @@ void s21::MazeWidget::paintEvent(QPaintEvent* event) {
       std::stack<std::pair<int, int>> path = controller_->FindPath(
           {path_start_.y() / cell_height_, path_start_.x() / cell_width_},
           {path_end_.y() / cell_height_, path_end_.x() / cell_width_});
-      auto begin = path.top();
-      path.pop();
-      int x1 = cell_width_ * begin.second + cell_width_ / 2;
-      int y1 = cell_height_ * begin.first + cell_height_ / 2;
-      int size = path.size();
-      for (int i = 0; i < size; ++i) {
-        auto p = path.top();
+      if (path.size() != 0) {
+        auto begin = path.top();
         path.pop();
-        int x2 = cell_width_ * p.second + cell_width_ / 2;
-        int y2 = cell_height_ * p.first + cell_height_ / 2;
-        painter.drawLine(x1, y1, x2, y2);
-        x1 = x2;
-        y1 = y2;
+        int x1 = cell_width_ * begin.second + cell_width_ / 2;
+        int y1 = cell_height_ * begin.first + cell_height_ / 2;
+        int size = path.size();
+        for (int i = 0; i < size; ++i) {
+          auto p = path.top();
+          path.pop();
+          int x2 = cell_width_ * p.second + cell_width_ / 2;
+          int y2 = cell_height_ * p.first + cell_height_ / 2;
+          painter.drawLine(x1, y1, x2, y2);
+          x1 = x2;
+          y1 = y2;
+        }
       }
     }
   }
