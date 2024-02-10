@@ -37,3 +37,7 @@ void s21::Model::SaveCave(const std::string filename) { cave_.Save(filename); }
 void s21::Model::GenerateMaze(int rows, int cols) {
   maze_.GenerateMaze(rows, cols);
 }
+
+void s21::Model::FindPath(std::pair<int, int> start, std::pair<int, int> end) {
+    maze_.FindPath(start, end);
+}

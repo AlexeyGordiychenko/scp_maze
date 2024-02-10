@@ -37,6 +37,7 @@ class Controller {
   void SaveMaze(const std::string filename);
   void SaveCave(const std::string filename);
   void GenerateMaze(int r, int c);
+    void FindPath(std::pair<int, int> start, std::pair<int, int> end);
 
  private:
   Model* model_;

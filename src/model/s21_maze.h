@@ -3,9 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <stack>
 
 #include "s21_labyrinth.h"
 #include "s21_mazegenerator.h"
+//#include "s21_pathfiner.h"
 
 namespace s21 {
 
@@ -22,6 +24,7 @@ class Maze : public Labyrinth {
   const std::vector<bool>& GetBWalls() const;
   void Save(const std::string filename);
   void GenerateMaze(int rows, int cols);
+  std::stack<std::pair<int, int>> FindPath(std::pair<int, int> start, std::pair<int, int> end);
 
  private:
   std::vector<bool> r_walls_, b_walls_;

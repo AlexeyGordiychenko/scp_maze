@@ -51,3 +51,7 @@ void s21::Controller::SaveCave(const std::string filename) {
 void s21::Controller::GenerateMaze(int rows, int cols) {
   model_->GenerateMaze(rows, cols);
 }
+
+void s21::Controller::FindPath(std::pair<int, int> start, std::pair<int, int> end) {
+    model_->FindPath(start, end);
+}

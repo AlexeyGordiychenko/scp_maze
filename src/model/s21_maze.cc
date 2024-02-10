@@ -34,10 +34,19 @@ void s21::Maze::Save(const std::string filename) {
 
 void s21::Maze::GenerateMaze(int rows, int cols) {
   MazeGenerator gen;
-  Maze maze = gen.GenerateMaze(cols, rows, true);
+  Maze maze = gen.GenerateMaze(cols, rows, false);
   cols_ = cols;
   rows_ = rows;
   r_walls_ = maze.r_walls_;
   b_walls_ = maze.b_walls_;
   is_empty_ = false;
+}
+
+std::stack<std::pair<int, int> > s21::Maze::FindPath(std::pair<int, int> start, std::pair<int, int> end) {
+    //PathFinder pathfinder(r_walls_, b_walls_, rows_, cols_);
+    //std::stack<std::pair<int, int>> path = pathfinder.FindPath(start, end);
+    // Now you can use the 'path' variable as needed
+
+//    std::cout <<
+//                 "Nearest square center indexes for pixel " << pathfinder.FindPath(start, end, this).size();
 }

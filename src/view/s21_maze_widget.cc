@@ -64,14 +64,27 @@ void s21::MazeWidget::paintEvent(QPaintEvent* event) {
 }
 
 void s21::MazeWidget::mousePressEvent(QMouseEvent* event) {
-  int x = event->position().x();
-  int y = event->position().y();
-  int col = (x - x_min_) / cell_width_ * cell_width_ + cell_width_ / 2;
-  int row = (y - y_min_) / cell_height_ * cell_height_ + cell_height_ / 2;
-  if (event->buttons() & Qt::LeftButton) {
-    path_start_ = QPoint(col, row);
-  } else {
-    path_end_ = QPoint(col, row);
-  }
-  update();
+    if (cell_width_ != 0 && cell_height_ != 0) {
+        int x = event->position().x();
+        int y = event->position().y();
+        int col = (x - x_min_) / cell_width_ * cell_width_ + cell_width_ / 2;
+        int row = (y - y_min_) / cell_height_ * cell_height_ + cell_height_ / 2;
+        if (event->buttons() & Qt::LeftButton) {
+            path_start_ = QPoint(col, row);
+        } else {
+            path_end_ = QPoint(col, row);
+        }
+
+        if (!path_start_.isNull() && !path_end_.isNull()) {
+            controller_->FindPath(
+                        {
+                            path_start_.x() / cell_width_,
+                            path_start_.y() / cell_height_
+                        },{
+                            path_end_.x() / cell_width_,
+                            path_end_.y() / cell_height_
+                        });
+        }
+        update();
+    }
 }
