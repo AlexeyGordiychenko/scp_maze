@@ -11,14 +11,14 @@ class Maze;
 
 class MazeGenerator {
  public:
-  Maze GenerateMaze(int width, int height, bool debug);
+  Maze GenerateMaze(int width, int height, bool debug, int seed);
 
  private:
   std::vector<std::vector<int>> right_walls_;
   std::vector<std::vector<int>> bottom_walls_;
   std::vector<int> row_sets_;
-  int width_;
-  int height_;
+  int cols_;
+  int rows_;
   int next_set_id_;
   int current_row_index_;
   void MarkupCells();

@@ -25,8 +25,8 @@ class PathFinder {
   bool IsBottomWall(int r, int c);
   bool IsRightWall(int r, int c);
 
-  stack<pair<int, int>> path;
-  pair<int, int> current;
+  stack<pair<int, int>> path_;
+  pair<int, int> current_;
   std::vector<bool> r_walls_, b_walls_;
   int rows_, cols_;
   std::vector<std::vector<int>> visited_;

@@ -1,17 +1,21 @@
 #include "s21_mazegenerator.h"
 
-s21::Maze s21::MazeGenerator::GenerateMaze(int width, int height,
-                                           bool debug = false) {
-  srand(time(0));
-  this->width_ = width;
-  this->height_ = height;
+#include <algorithm>
+
+s21::Maze s21::MazeGenerator::GenerateMaze(int cols, int rows,
+                                           bool debug = false,
+                                           int seed = time(0)) {
+  cols = std::clamp(cols, 1, 50);
+  rows = std::clamp(rows, 1, 50);
+  srand(seed);
+  this->cols_ = cols;
+  this->rows_ = rows;
   next_set_id_ = 1;
-  right_walls_ =
-      std::vector<std::vector<int>>(height, std::vector<int>(width, 0));
+  right_walls_ = std::vector<std::vector<int>>(rows, std::vector<int>(cols, 0));
   bottom_walls_ =
-      std::vector<std::vector<int>>(height, std::vector<int>(width, 0));
-  row_sets_ = std::vector<int>(width, 0);
-  for (current_row_index_ = 0; current_row_index_ < height;
+      std::vector<std::vector<int>>(rows, std::vector<int>(cols, 0));
+  row_sets_ = std::vector<int>(cols, 0);
+  for (current_row_index_ = 0; current_row_index_ < rows;
        current_row_index_++) {
     MarkupCells();
     PlaceRightWalls();
@@ -20,19 +24,19 @@ s21::Maze s21::MazeGenerator::GenerateMaze(int width, int height,
   }
 
   std::vector<bool> r_walls, b_walls;
-  for (int i = 0; i < height; ++i) {
-    for (int j = 0; j < width; ++j) {
+  for (int i = 0; i < rows; ++i) {
+    for (int j = 0; j < cols; ++j) {
       r_walls.push_back(right_walls_[i][j] == 1);
       b_walls.push_back(bottom_walls_[i][j] == 1);
     }
   }
 
-  return Maze(false, height, width, r_walls, b_walls);
+  return Maze(false, cols, rows, r_walls, b_walls);
 }
 
 void s21::MazeGenerator::PlaceRightWalls() {
-  for (int i = 0; i < width_; i++) {
-    if (i == width_ - 1) {
+  for (int i = 0; i < cols_; i++) {
+    if (i == cols_ - 1) {
       right_walls_[current_row_index_][i] = 1;
     } else if (row_sets_[i] == row_sets_[i + 1]) {
       right_walls_[current_row_index_][i] = 1;
@@ -40,19 +44,19 @@ void s21::MazeGenerator::PlaceRightWalls() {
       right_walls_[current_row_index_][i] = 1;
     } else {
       int old_set_id = row_sets_[i];
-      for (int j = 0; j < width_; j++) {
+      for (int j = 0; j < cols_; j++) {
         if (row_sets_[j] == old_set_id) {
           row_sets_[j] = row_sets_[i + 1];
         }
       }
     }
   }
-  if (current_row_index_ == height_ - 1) {
-    for (int i = 0; i < width_ - 1; i++) {
+  if (current_row_index_ == rows_ - 1) {
+    for (int i = 0; i < cols_ - 1; i++) {
       if (row_sets_[i] != row_sets_[i + 1]) {
         right_walls_[current_row_index_][i] = 0;
         int old_set_id = row_sets_[i];
-        for (int j = 0; j < width_; j++) {
+        for (int j = 0; j < cols_; j++) {
           if (row_sets_[j] == old_set_id) {
             row_sets_[j] = row_sets_[i + 1];
           }
@@ -64,14 +68,14 @@ void s21::MazeGenerator::PlaceRightWalls() {
 
 void s21::MazeGenerator::PlaceBottomWalls() {
   std::map<int, int> set_size;
-  for (int i = 0; i < width_; i++) {
+  for (int i = 0; i < cols_; i++) {
     set_size[row_sets_[i]] += 1;
   }
-  for (int i = 0; i < width_; i++) {
+  for (int i = 0; i < cols_; i++) {
     if (rand() > (RAND_MAX / 2) && set_size[row_sets_[i]] > 1) {
       bottom_walls_[current_row_index_][i] = 1;
       set_size[row_sets_[i]] -= 1;
-    } else if (current_row_index_ == height_ - 1) {
+    } else if (current_row_index_ == rows_ - 1) {
       bottom_walls_[current_row_index_][i] = 1;
     }
   }
@@ -80,12 +84,12 @@ void s21::MazeGenerator::PlaceBottomWalls() {
 void s21::MazeGenerator::ShowNewRow() {
   bool show_id = false;
   if (current_row_index_ == 0) {
-    for (int j = 0; j < width_ * 3; j++) {
+    for (int j = 0; j < cols_ * 3; j++) {
       printf("_");
     }
     printf("_\n");
   }
-  for (int j = 0; j < width_; j++) {
+  for (int j = 0; j < cols_; j++) {
     if (j == 0) {
       printf("|");
     }
@@ -108,7 +112,7 @@ void s21::MazeGenerator::ShowNewRow() {
 }
 
 void s21::MazeGenerator::MarkupCells() {
-  for (int i = 0; i < width_; i++) {
+  for (int i = 0; i < cols_; i++) {
     if (current_row_index_ > 0 &&
         IsBottomWall(current_row_index_ - 1, i) == 1) {
       row_sets_[i] = 0;

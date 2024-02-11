@@ -1,35 +1,39 @@
 #include "s21_pathfiner.h"
 
+#include <algorithm>
+
 bool s21::PathFinder::IsCanMoveLeft() {
   bool result = true;
-  if ((current.second - 1) < 0 || visited_[current.first][current.second - 1] ||
-      IsRightWall(current.first, current.second - 1))
+  if ((current_.second - 1) < 0 ||
+      visited_[current_.first][current_.second - 1] ||
+      IsRightWall(current_.first, current_.second - 1))
     result = false;
   return result;
 }
 
 bool s21::PathFinder::IsCanMoveRight() {
   bool result = true;
-  if ((current.second + 1) >= cols_ ||
-      visited_[current.first][current.second + 1] ||
-      IsRightWall(current.first, current.second))
+  if ((current_.second + 1) >= cols_ ||
+      visited_[current_.first][current_.second + 1] ||
+      IsRightWall(current_.first, current_.second))
     result = false;
   return result;
 }
 
 bool s21::PathFinder::IsCanMoveUp() {
   bool result = true;
-  if ((current.first - 1) < 0 || visited_[current.first - 1][current.second] ||
-      IsBottomWall(current.first - 1, current.second))
+  if ((current_.first - 1) < 0 ||
+      visited_[current_.first - 1][current_.second] ||
+      IsBottomWall(current_.first - 1, current_.second))
     result = false;
   return result;
 }
 
 bool s21::PathFinder::IsCanMoveDown() {
   bool result = true;
-  if ((current.first + 1) >= rows_ ||
-      visited_[current.first + 1][current.second] ||
-      IsBottomWall(current.first, current.second))
+  if ((current_.first + 1) >= rows_ ||
+      visited_[current_.first + 1][current_.second] ||
+      IsBottomWall(current_.first, current_.second))
     result = false;
   return result;
 }
@@ -44,36 +48,42 @@ bool s21::PathFinder::IsRightWall(int r, int c) {
 
 stack<pair<int, int>> s21::PathFinder::FindPath(pair<int, int> start,
                                                 pair<int, int> end) {
+  start.first = std::clamp(start.first, 0, rows_ - 1);
+  start.second = std::clamp(start.second, 0, cols_ - 1);
+  end.first = std::clamp(end.first, 0, rows_ - 1);
+  end.second = std::clamp(end.second, 0, cols_ - 1);
+
   visited_[start.first][start.second] = 1;
-  path.push(start);
-  while (!path.empty()) {
-    current = path.top();
-    if (current == end) {
+  path_.push(start);
+  while (!path_.empty()) {
+    current_ = path_.top();
+    if (current_ == end) {
       break;
     }
     if (IsCanMoveLeft()) {
-      path.push({current.first, current.second - 1});
-      visited_[current.first][current.second - 1] = 1;
+      path_.push({current_.first, current_.second - 1});
+      visited_[current_.first][current_.second - 1] = 1;
     } else if (IsCanMoveRight()) {
-      path.push({current.first, current.second + 1});
-      visited_[current.first][current.second + 1] = 1;
+      path_.push({current_.first, current_.second + 1});
+      visited_[current_.first][current_.second + 1] = 1;
     } else if (IsCanMoveUp()) {
-      path.push({current.first - 1, current.second});
-      visited_[current.first - 1][current.second] = 1;
+      path_.push({current_.first - 1, current_.second});
+      visited_[current_.first - 1][current_.second] = 1;
     } else if (IsCanMoveDown()) {
-      path.push({current.first + 1, current.second});
-      visited_[current.first + 1][current.second] = 1;
+      path_.push({current_.first + 1, current_.second});
+      visited_[current_.first + 1][current_.second] = 1;
     } else {
-      path.pop();
+      path_.pop();
     }
   }
-  return path;
+  return path_;
 }
 
 s21::PathFinder::PathFinder(std::vector<bool> r_walls,
                             std::vector<bool> b_walls, int rows, int cols)
     : r_walls_(r_walls),
       b_walls_(b_walls),
-      rows_(rows),
-      cols_(cols),
-      visited_(rows, std::vector<int>(cols, 0)) {}
+      rows_(std::clamp(rows, 1, 50)),
+      cols_(std::clamp(cols, 1, 50)),
+      visited_(std::clamp(rows, 1, 50),
+               std::vector<int>(std::clamp(cols, 1, 50), 0)) {}

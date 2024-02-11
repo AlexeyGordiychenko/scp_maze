@@ -19,6 +19,9 @@ class Model {
   int GetMazeCols() const;
   const std::vector<bool>& GetMazeRWalls() const;
   const std::vector<bool>& GetMazeBWalls() const;
+  std::stack<pair<int, int>> FindPath(std::pair<int, int> start,
+                                      std::pair<int, int> end);
+  void GenerateMaze(int rows, int cols);
   // Cave
   void InitializeCave(const std::string filename);
   bool EmptyCave() const;
@@ -29,14 +32,10 @@ class Model {
   bool CaveCellularAutomaton(int birth_limit, int death_limit);
   void SaveMaze(const std::string filename);
   void SaveCave(const std::string filename);
-  std::stack<pair<int, int>> FindPath(std::pair<int, int> start,
-                                      std::pair<int, int> end);
-  void GenerateMaze(int rows, int cols);
 
  private:
   Maze maze_;
   Cave cave_;
-  MazeGenerator maze_generator_;
 };
 }  // namespace s21
 #endif  // S21_MAZE_MODEL_H

@@ -34,7 +34,7 @@ void s21::Maze::Save(const std::string filename) {
 
 void s21::Maze::GenerateMaze(int rows, int cols) {
   MazeGenerator gen;
-  Maze maze = gen.GenerateMaze(cols, rows, false);
+  Maze maze = gen.GenerateMaze(cols, rows, false, time(0));
   cols_ = cols;
   rows_ = rows;
   r_walls_ = maze.r_walls_;
