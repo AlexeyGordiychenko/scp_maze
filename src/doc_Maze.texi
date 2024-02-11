@@ -1,12 +1,12 @@
 \input texinfo
-@setfilename S21_3DViewer_v2.0.info
+@setfilename S21_Maze.info
 
-@settitle S21 3DViewer v2.0 Program Documentation
+@settitle S21 Maze Program Documentation
 
 @titlepage
-@title S21 3DViewer v2.0
+@title S21 Maze
 @subtitle Program Documentation
-@author by ternesim
+@author by elidacon
 @end titlepage
 
 @menu
@@ -18,42 +18,48 @@
 @node Introduction
 @section Introduction
 
-This program, a 3DViewer, is developed using C++17 and follows the principles of object-oriented programming. It employs various design patterns, including Model-View-Controller (MVC), command, singleton, and observer. The graphical user interface (GUI) implementation is based on QT 6.4.3. The program functions as a 3D model explorer, enabling users to adjust a wide range of view parameters, allowing them to appreciate the beauty of each individual 3D object.
+This program is developed using C++17 and follows the principles of object-oriented programming. It employs Model-View-Controller (MVC) design pattern. The graphical user interface (GUI) implementation is based on QT 6.4.3.
 
-For a more user-friendly experience, the program incorporates undo/redo functionality and a history of opened files. The undo/redo feature is implemented using a command template. This template enables the storage of actions and previous states as objects in a stack, allowing the easy undoing of actions when necessary.
+The 'Maze' program features two interactive tabs: 'Maze' and 'Cave'. Each tab serves different purposes and offers various functionalities.
 
-In addition, the 3D viewer offers the ability to create a GIF that captures all object transformations and generates images of the object. Given that the GIF creator object exists in a singular form within the program, the Singleton pattern is utilized to ensure the object's uniqueness.
+On the 'Maze' tab, users can interact with the application to manage mazes. There is an 'Open' button that allows loading a pre-existing maze from a file. Additionally, there are fields where users can specify the dimensions of the desired maze. To create a new maze, users can click the 'Generate' button, which will construct a maze according to the specified size. Once satisfied with the generated maze, it can be saved using the 'Save' button.
 
-Lastly, the Observer pattern is used to allow the OpenGL widget to observe the main window and adjust its appearance and properties based on the changes in the main window.
+Switching to the 'Cave' tab, a similar interface is presented, albeit with some unique features specific to caves. Users can again load a pre-existing cave configuration from a file via the 'Open' button. Fields allow the input of the dimensions of the cave and a chance value for initializing cells. The 'Generate' button creates a cave based on these parameters, and the 'Save' button stores the current state of the cave.
+
+Additionally, the 'Cave' tab includes two sliders for birth and death limits, each offering a range from 0 to 7. These sliders control the parameters of the cellular automaton algorithm applied within the cave.
+
+The 'Cave' tab also features two action buttons: 'Next step' and 'Play.' Pressing 'Next step' advances the cellular automaton algorithm to its next stage, allowing users to observe the evolution of the cave one step at a time. The 'Play' button initiates a continuous rendering of all iterations of the algorithm, with the speed of progression determined by a delay. A delay can be set using a dedicated field, which determines the pause between each iteration of the algorithm.
 
 @node Usage
 @section Usage
 
-To install the program, you first need to navigate to the directory containing the program's source files. Run 'make install'. After the installation process is completed, you can start the program by running either 'make open' or './install/s21_3DViewer_v2'
+To install the program, you first need to navigate to the directory containing the program's source files. Run 'make install'. After the installation process is completed, you can start the program by running either 'make open' or './install/s21_Maze'
 
 @node Available buttons
 @section Available buttons
 
+Maze tab:
+
 @multitable @columnfractions 0.2 0.8
-@item Open @tab Open an .obj file
-@item Render @tab Render object's wireframe
-@item Projection @tab Change projection
-@item Screenshot @tab Take a screenshot
-@item GIF @tab Create a gif
-@item Undo @tab Undo last action
-@item Redo @tab Redo last action
-@item Scale @tab Change object's scale
-@item Rotation @tab Change object's rotation
-@item Move @tab Change object's position
-@item Apply @tab Apply affine transformations to the object
-@item Reset @tab Reset object's affine transformations
-@item Background @tab Change background color
-@item Line type @tab Change lines to solid/dashed
-@item Line thickness @tab Change lines thickness
-@item Line color @tab Change lines color
-@item Vertex type @tab Change vertices to none/circle/square
-@item Vertex size @tab Change vertices size
-@item Vertex color @tab Change vertices color
+@item Open @tab Open a .txt file, containing a maze
+@item Size (RxC) @tab Set the size of a maze to be generated
+@item Generate @tab Generate a maze
+@item Save @tab Save current maze
+@end multitable
+
+Cave tab:
+
+@multitable @columnfractions 0.2 0.8
+@item Open @tab Open a .txt file, containing a cave
+@item Size (RxC) @tab Set the size of a cave to be generated
+@item Size (RxC) @tab Set the chance for the starting initialization of a cave's cell
+@item Generate @tab Generate a cave
+@item Save @tab Save current cave
+@item Birth limit @tab Birth limit for cellular automaton algorithm, range 0-7
+@item Death limit @tab Death limit for cellular automaton algorithm, range 0-7
+@item Delay @tab Delay in ms between rendering iterations for the Play button
+@item Next step @tab Render the next iteration of the cellular automaton algorithm
+@item Play @tab Starts to render iterations of the cellular automaton algorithm
 @end multitable
 
 @bye
