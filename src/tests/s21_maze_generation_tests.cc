@@ -12,7 +12,8 @@ TEST(MazeGeneratorTest, GenerateMazeValidDimensions) {
   s21::MazeGenerator mazeGenerator;
   int cols = 15;
   int rows = 10;
-  s21::Maze maze = mazeGenerator.GenerateMaze(rows, cols, false, time(0));
+  s21::Maze maze;
+  maze.GenerateMaze(rows, cols);
   EXPECT_EQ(maze.GetRows(), rows);
   EXPECT_EQ(maze.GetCols(), cols);
 }
@@ -21,7 +22,9 @@ TEST(MazeGeneratorTest, GenerateMazeInvalidDimensions) {
   s21::MazeGenerator mazeGenerator;
   int rows = -1;
   int cols = 100;
-  s21::Maze maze = mazeGenerator.GenerateMaze(rows, cols, false, time(0));
+  s21::Maze maze;
+  EXPECT_TRUE(maze.Empty());
+  maze.GenerateMaze(rows, cols);
   EXPECT_EQ(maze.GetRows(), 1);
   EXPECT_EQ(maze.GetCols(), 50);
 }

@@ -1,5 +1,6 @@
 #include "s21_maze.h"
 
+#include <algorithm>
 #include <tuple>
 
 s21::Maze::Maze(bool is_empty, int rows, int cols,
@@ -33,6 +34,8 @@ void s21::Maze::Save(const std::string filename) {
 }
 
 void s21::Maze::GenerateMaze(int rows, int cols) {
+  cols = std::clamp(cols, 1, 50);
+  rows = std::clamp(rows, 1, 50);
   MazeGenerator gen;
   Maze maze = gen.GenerateMaze(cols, rows, false, time(0));
   cols_ = cols;
