@@ -22,6 +22,9 @@ class MazeWidget : public LabyrinthWidget {
   void mousePressEvent(QMouseEvent* event) override;
 
  private:
+  // Functions
+  int AdjustPathLineNearPoints(int c1, int c2, int k);
+
   // Variables
   QPoint path_start_, path_end_;
 };

@@ -67,16 +67,28 @@ void s21::MazeWidget::paintEvent(QPaintEvent* event) {
           {path_start_.y() / cell_height_, path_start_.x() / cell_width_},
           {path_end_.y() / cell_height_, path_end_.x() / cell_width_});
       if (path.size() != 0) {
+        painter.setPen(Qt::green);
+        auto half_cell_width = cell_width_ / 2;
+        auto half_cell_height = cell_height_ / 2;
+        auto half_path_edges_size = path_edges_size / 2;
         auto begin = path.top();
         path.pop();
-        int x1 = cell_width_ * begin.second + cell_width_ / 2;
-        int y1 = cell_height_ * begin.first + cell_height_ / 2;
+        int x1 = cell_width_ * begin.second + half_cell_width;
+        int y1 = cell_height_ * begin.first + half_cell_height;
         int size = path.size();
         for (int i = 0; i < size; ++i) {
           auto p = path.top();
           path.pop();
-          int x2 = cell_width_ * p.second + cell_width_ / 2;
-          int y2 = cell_height_ * p.first + cell_height_ / 2;
+          int x2 = cell_width_ * p.second + half_cell_width;
+          int y2 = cell_height_ * p.first + half_cell_height;
+          if (i == 0) {
+            x1 = AdjustPathLineNearPoints(x1, x2, half_path_edges_size);
+            y1 = AdjustPathLineNearPoints(y1, y2, half_path_edges_size);
+          }
+          if (i == size - 1) {
+            x2 = AdjustPathLineNearPoints(x2, x1, half_path_edges_size);
+            y2 = AdjustPathLineNearPoints(y2, y1, half_path_edges_size);
+          }
           painter.drawLine(x1, y1, x2, y2);
           x1 = x2;
           y1 = y2;
@@ -100,4 +112,9 @@ void s21::MazeWidget::mousePressEvent(QMouseEvent* event) {
 
     update();
   }
+}
+
+int s21::MazeWidget::AdjustPathLineNearPoints(int c1, int c2, int k) {
+  if (c1 != c2 && k) c1 = (c1 < c2) ? c1 + k : c1 - k;
+  return c1;
 }
