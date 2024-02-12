@@ -29,6 +29,8 @@ s21::View::View(Controller* controller, QWidget* parent)
 
   connect(ui_->caveGenerateBtn, &QPushButton::clicked, this,
           [this]() { GenerateLabyrinth(ui_->caveFilePath); });
+  connect(ui_->mazeGenerateBtn, &QPushButton::clicked, this,
+          [this]() { GenerateLabyrinth(ui_->mazeFilePath); });
 
   connect(ui_->caveNextStep, &QPushButton::clicked, this,
           &View::GenerateCaveNextStep);
@@ -39,8 +41,6 @@ s21::View::View(Controller* controller, QWidget* parent)
           [this]() { SaveLabyrinth(ui_->mazeFilePath); });
   connect(ui_->caveSaveBtn, &QPushButton::clicked, this,
           [this]() { SaveLabyrinth(ui_->caveFilePath); });
-  connect(ui_->mazeGenerateBtn, &QPushButton::clicked, this,
-          &View::GenerateMaze);
 
   ui_->mazeWidget->SetController(controller);
   ui_->caveWidget->SetController(controller);
@@ -100,6 +100,9 @@ void s21::View::GenerateLabyrinth(QComboBox* element) {
     element->setCurrentIndex(element->count());
   }
   if (element == ui_->mazeFilePath) {
+    controller_->GenerateMaze(ui_->mazeNumRows->value(),
+                              ui_->mazeNumCols->value());
+    Render(ui_->mazeWidget);
   } else if (element == ui_->caveFilePath) {
     controller_->GenerateCave(ui_->caveChance->value(),
                               ui_->caveNumRows->value(),
@@ -160,10 +163,4 @@ void s21::View::SaveLabyrinth(QComboBox* element) {
     QMessageBox msg;
     msg.information(0, "", msg_text);
   }
-}
-
-void s21::View::GenerateMaze() {
-  controller_->GenerateMaze(ui_->mazeNumRows->value(),
-                            ui_->mazeNumCols->value());
-  Render(ui_->mazeWidget);
 }
