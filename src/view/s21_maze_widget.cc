@@ -87,7 +87,7 @@ void s21::MazeWidget::paintEvent(QPaintEvent* event) {
 }
 
 void s21::MazeWidget::mousePressEvent(QMouseEvent* event) {
-  if (cell_width_ != 0 && cell_height_ != 0) {
+  if (!controller_->EmptyMaze()) {
     int x = event->position().x();
     int y = event->position().y();
     int col = (x - x_min_) / cell_width_ * cell_width_ + cell_width_ / 2;
