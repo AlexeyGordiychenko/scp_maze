@@ -24,9 +24,13 @@ class MazeWidget : public LabyrinthWidget {
  private:
   // Functions
   int AdjustPathLineNearPoints(int c1, int c2, int k);
+  void RenderMaze(QPainter& painter);
+  void RenderPonts(QPainter& painter);
+  void RenderPath(QPainter& painter);
 
   // Variables
   QPoint path_start_, path_end_;
+  int path_edges_size_;
 };
 }  // namespace s21
 #endif  // S21_MAZE_MAZE_WIDGET_H
