@@ -42,7 +42,7 @@ void s21::MazeWidget::mousePressEvent(QMouseEvent* event) {
 }
 
 int s21::MazeWidget::AdjustPathLineNearPoints(int c1, int c2, int k) {
-  if (c1 != c2 && k) c1 = (c1 < c2) ? c1 + k : c1 - k;
+  if (c1 != c2 && k) c1 = (c1 < c2) ? c1 + k + 1 : c1 - k;
   return c1;
 }
 
@@ -97,8 +97,8 @@ void s21::MazeWidget::RenderPath(QPainter& painter) {
         {path_end_.y() / cell_height_, path_end_.x() / cell_width_});
     if (path.size() != 0) {
       painter.setPen(Qt::green);
-      auto half_cell_width = cell_width_ / 2;
-      auto half_cell_height = cell_height_ / 2;
+      auto half_cell_width = cell_width_ / 2 + line_width_ / 2;
+      auto half_cell_height = cell_height_ / 2 + line_width_ / 2;
       auto half_path_edges_size_ = path_edges_size_ / 2;
       auto begin = path.top();
       path.pop();
