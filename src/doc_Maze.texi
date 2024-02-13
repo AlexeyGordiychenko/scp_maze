@@ -23,6 +23,7 @@ This program is developed using C++17 and follows the principles of object-orien
 The 'Maze' program features two interactive tabs: 'Maze' and 'Cave'. Each tab serves different purposes and offers various functionalities.
 
 On the 'Maze' tab, users can interact with the application to manage mazes. There is an 'Open' button that allows loading a pre-existing maze from a file. Additionally, there are fields where users can specify the dimensions of the desired maze. To create a new maze, users can click the 'Generate' button, which will construct a maze according to the specified size. Once satisfied with the generated maze, it can be saved using the 'Save' button.
+Users also have the ability to 'solve' the maze, meaning to find a path from one point to another. They can designate a starting point by clicking the left mouse button and mark the destination with the right mouse button directly on the maze layout. Once the endpoint is established, the software will visually trace the route from the starting point to the designated end point.
 
 Switching to the 'Cave' tab, a similar interface is presented, albeit with some unique features specific to caves. Users can again load a pre-existing cave configuration from a file via the 'Open' button. Fields allow the input of the dimensions of the cave and a chance value for initializing cells. The 'Generate' button creates a cave based on these parameters, and the 'Save' button stores the current state of the cave.
 
