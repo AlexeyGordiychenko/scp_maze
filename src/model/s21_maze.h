@@ -27,8 +27,6 @@ class Maze : public Labyrinth {
   std::vector<std::vector<int>> right_walls_;
   std::vector<std::vector<int>> bottom_walls_;
   std::vector<int> row_sets_;
-  int cols_;
-  int rows_;
   int next_set_id_;
   int current_row_index_;
   std::stack<std::pair<int, int>> path_;
