@@ -38,7 +38,7 @@ void s21::Model::GenerateMaze(int rows, int cols) {
   maze_.GenerateMaze(rows, cols);
 }
 
-std::stack<pair<int, int>> s21::Model::FindPath(std::pair<int, int> start,
-                                                std::pair<int, int> end) {
+std::stack<std::pair<int, int>> s21::Model::FindPath(std::pair<int, int> start,
+                                                     std::pair<int, int> end) {
   return maze_.FindPath(start, end);
 }

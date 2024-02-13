@@ -12,7 +12,6 @@ QMAKE_CXXFLAGS += -fmax-errors=1
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    model/s21_pathfiner.cc \
     s21_main.cc \
     view/s21_view.cc \
     view/s21_maze_widget.cc \
@@ -23,7 +22,6 @@ SOURCES += \
     controller/s21_controller.cc
 
 HEADERS += \
-    model/s21_pathfiner.h \
     view/s21_view.h \
     view/s21_labyrinth_widget.h \
     view/s21_maze_widget.h \

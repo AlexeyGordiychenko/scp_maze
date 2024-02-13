@@ -6,7 +6,6 @@
 #include <vector>
 
 #include "s21_labyrinth.h"
-#include "s21_pathfiner.h"
 
 namespace s21 {
 
@@ -28,8 +27,6 @@ class Maze : public Labyrinth {
 
  private:
   std::vector<bool> r_walls_, b_walls_;
-  void ClearData();
-
   std::vector<std::vector<int>> right_walls_;
   std::vector<std::vector<int>> bottom_walls_;
   std::vector<int> row_sets_;
@@ -37,12 +34,22 @@ class Maze : public Labyrinth {
   int rows_;
   int next_set_id_;
   int current_row_index_;
+  std::stack<std::pair<int, int>> path_;
+  std::pair<int, int> current_;
+  std::vector<std::vector<int>> visited_;
+  void ClearData();
   void MarkupCells();
   void PlaceRightWalls();
   void PlaceBottomWalls();
   void ShowNewRow();
   bool IsRightWall(int m, int n) { return right_walls_[m][n] == 1; }
   bool IsBottomWall(int m, int n) { return bottom_walls_[m][n] == 1; }
+  bool IsCanMoveLeft();
+  bool IsCanMoveRight();
+  bool IsCanMoveUp();
+  bool IsCanMoveDown();
+  bool IsBWall(int r, int c);
+  bool IsRWall(int r, int c);
 };
 }  // namespace s21
 #endif  // S21_MAZE_MAZE_H

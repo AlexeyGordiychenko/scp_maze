@@ -17,8 +17,8 @@ class Model {
   int GetMazeCols() const;
   const std::vector<bool>& GetMazeRWalls() const;
   const std::vector<bool>& GetMazeBWalls() const;
-  std::stack<pair<int, int>> FindPath(std::pair<int, int> start,
-                                      std::pair<int, int> end);
+  std::stack<std::pair<int, int>> FindPath(std::pair<int, int> start,
+                                           std::pair<int, int> end);
   void GenerateMaze(int rows, int cols);
   // Cave
   void InitializeCave(const std::string filename);

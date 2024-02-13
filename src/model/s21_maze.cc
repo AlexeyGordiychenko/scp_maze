@@ -34,18 +34,6 @@ void s21::Maze::Save(const std::string filename) {
   SaveToFile(filename, rows_, cols_, r_walls_, b_walls_);
 }
 
-std::stack<std::pair<int, int>> s21::Maze::FindPath(std::pair<int, int> start,
-                                                    std::pair<int, int> end) {
-  if (start.first >= rows_ || end.first >= rows_ || start.second >= cols_ ||
-      end.second >= cols_) {
-    std::stack<pair<int, int>> path;
-    return path;
-  }
-  PathFinder pathfinder(r_walls_, b_walls_, rows_, cols_);
-  std::stack<pair<int, int>> path = pathfinder.FindPath(start, end);
-  return path;
-}
-
 void s21::Maze::GenerateMaze(int cols, int rows, bool debug, int seed) {
   cols = std::clamp(cols, 1, 50);
   rows = std::clamp(rows, 1, 50);
@@ -165,4 +153,80 @@ void s21::Maze::MarkupCells() {
       row_sets_[i] = next_set_id_++;
     }
   }
+}
+
+bool s21::Maze::IsCanMoveLeft() {
+  bool result = true;
+  if ((current_.second - 1) < 0 ||
+      visited_[current_.first][current_.second - 1] ||
+      IsRWall(current_.first, current_.second - 1))
+    result = false;
+  return result;
+}
+
+bool s21::Maze::IsCanMoveRight() {
+  bool result = true;
+  if ((current_.second + 1) >= cols_ ||
+      visited_[current_.first][current_.second + 1] ||
+      IsRWall(current_.first, current_.second))
+    result = false;
+  return result;
+}
+
+bool s21::Maze::IsCanMoveUp() {
+  bool result = true;
+  if ((current_.first - 1) < 0 ||
+      visited_[current_.first - 1][current_.second] ||
+      IsBWall(current_.first - 1, current_.second))
+    result = false;
+  return result;
+}
+
+bool s21::Maze::IsCanMoveDown() {
+  bool result = true;
+  if ((current_.first + 1) >= rows_ ||
+      visited_[current_.first + 1][current_.second] ||
+      IsBWall(current_.first, current_.second))
+    result = false;
+  return result;
+}
+
+bool s21::Maze::IsBWall(int r, int c) { return b_walls_[r * cols_ + c]; }
+
+bool s21::Maze::IsRWall(int r, int c) { return r_walls_[r * cols_ + c]; }
+
+std::stack<std::pair<int, int>> s21::Maze::FindPath(std::pair<int, int> start,
+                                                    std::pair<int, int> end) {
+  start.first = std::clamp(start.first, 0, rows_ - 1);
+  start.second = std::clamp(start.second, 0, cols_ - 1);
+  end.first = std::clamp(end.first, 0, rows_ - 1);
+  end.second = std::clamp(end.second, 0, cols_ - 1);
+
+  visited_ = std::vector<std::vector<int>>(
+      std::clamp(rows_, 1, 50), std::vector<int>(std::clamp(cols_, 1, 50), 0));
+  path_ = std::stack<std::pair<int, int>>();
+  visited_[start.first][start.second] = 1;
+  path_.push(start);
+  while (!path_.empty()) {
+    current_ = path_.top();
+    if (current_ == end) {
+      break;
+    }
+    if (IsCanMoveLeft()) {
+      path_.push({current_.first, current_.second - 1});
+      visited_[current_.first][current_.second - 1] = 1;
+    } else if (IsCanMoveRight()) {
+      path_.push({current_.first, current_.second + 1});
+      visited_[current_.first][current_.second + 1] = 1;
+    } else if (IsCanMoveUp()) {
+      path_.push({current_.first - 1, current_.second});
+      visited_[current_.first - 1][current_.second] = 1;
+    } else if (IsCanMoveDown()) {
+      path_.push({current_.first + 1, current_.second});
+      visited_[current_.first + 1][current_.second] = 1;
+    } else {
+      path_.pop();
+    }
+  }
+  return path_;
 }
