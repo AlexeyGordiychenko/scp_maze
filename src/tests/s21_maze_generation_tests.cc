@@ -30,7 +30,7 @@ TEST(MazeGeneratorTest, CheckMazeCorrectness) {
   int size = 50;
   for (int i = 0; i < 20; ++i) {
     s21::Maze maze;
-    maze.GenerateMaze(size, size, false, time(0));
+    maze.GenerateMaze(size, size, time(0));
     EXPECT_EQ(maze.GetRows(), size);
     EXPECT_EQ(maze.GetCols(), size);
     for (int i = 0; i < 20; ++i) {

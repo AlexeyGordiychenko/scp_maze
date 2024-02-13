@@ -4,13 +4,6 @@
 #include <map>
 #include <tuple>
 
-s21::Maze::Maze(bool is_empty, int rows, int cols,
-                const std::vector<bool> r_walls,
-                const std::vector<bool> b_walls)
-    : s21::Labyrinth(is_empty, rows, cols),
-      r_walls_(r_walls),
-      b_walls_(b_walls) {}
-
 void s21::Maze::Initialize(const std::string filename) {
   ClearData();
   std::tie(rows_, cols_) = ParseFile(filename, "maze", r_walls_, b_walls_);
@@ -34,7 +27,7 @@ void s21::Maze::Save(const std::string filename) {
   SaveToFile(filename, rows_, cols_, r_walls_, b_walls_);
 }
 
-void s21::Maze::GenerateMaze(int cols, int rows, bool debug, int seed) {
+void s21::Maze::GenerateMaze(int cols, int rows, int seed) {
   cols = std::clamp(cols, 1, 50);
   rows = std::clamp(rows, 1, 50);
   srand(seed);
@@ -50,7 +43,6 @@ void s21::Maze::GenerateMaze(int cols, int rows, bool debug, int seed) {
     MarkupCells();
     PlaceRightWalls();
     PlaceBottomWalls();
-    if (debug) ShowNewRow();
   }
 
   std::vector<bool> r_walls, b_walls;
@@ -111,36 +103,6 @@ void s21::Maze::PlaceBottomWalls() {
       bottom_walls_[current_row_index_][i] = 1;
     }
   }
-}
-
-void s21::Maze::ShowNewRow() {
-  bool show_id = false;
-  if (current_row_index_ == 0) {
-    for (int j = 0; j < cols_ * 3; j++) {
-      printf("_");
-    }
-    printf("_\n");
-  }
-  for (int j = 0; j < cols_; j++) {
-    if (j == 0) {
-      printf("|");
-    }
-    if (IsBottomWall(current_row_index_, j) == 1) {
-      printf("_");
-      if (show_id) printf("%2d", row_sets_[j]);
-      printf("_");
-    } else {
-      printf(" ");
-      if (show_id) printf("%2d", row_sets_[j]);
-      printf(" ");
-    }
-    if (right_walls_[current_row_index_][j] == 1) {
-      printf("|");
-    } else {
-      printf(" ");
-    }
-  }
-  printf("\n");
 }
 
 void s21::Maze::MarkupCells() {
