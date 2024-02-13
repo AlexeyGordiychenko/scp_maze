@@ -3,9 +3,9 @@
 #include "../controller/s21_controller.h"
 
 void s21::MazeWidget::Initialize() {
-  cell_width_ = x_max_ / controller_->GetMazeCols();
-  cell_height_ = y_max_ / controller_->GetMazeRows();
-  path_edges_size_ = std::min(std::min(cell_width_, cell_height_) / 2, 30);
+  cell_width_ = static_cast<double>(x_max_) / controller_->GetMazeCols();
+  cell_height_ = static_cast<double>(y_max_) / controller_->GetMazeRows();
+  path_edges_size_ = std::min(std::min(cell_width_, cell_height_) / 2, 30.0);
 
   path_start_ = QPoint();
   path_end_ = QPoint();
@@ -29,8 +29,10 @@ void s21::MazeWidget::mousePressEvent(QMouseEvent* event) {
   if (!controller_->EmptyMaze()) {
     int x = event->position().x();
     int y = event->position().y();
-    int col = (x - x_min_) / cell_width_ * cell_width_ + cell_width_ / 2;
-    int row = (y - y_min_) / cell_height_ * cell_height_ + cell_height_ / 2;
+    auto col = static_cast<int>((x - x_min_) / cell_width_) * cell_width_ +
+               cell_width_ / 2;
+    auto row = static_cast<int>((y - y_min_) / cell_height_) * cell_height_ +
+               cell_height_ / 2;
     if (event->buttons() & Qt::LeftButton) {
       path_start_ = QPoint(col, row);
     } else {
@@ -102,14 +104,14 @@ void s21::MazeWidget::RenderPath(QPainter& painter) {
       auto half_path_edges_size_ = path_edges_size_ / 2;
       auto begin = path.top();
       path.pop();
-      int x1 = cell_width_ * begin.second + half_cell_width;
-      int y1 = cell_height_ * begin.first + half_cell_height;
+      auto x1 = cell_width_ * begin.second + half_cell_width;
+      auto y1 = cell_height_ * begin.first + half_cell_height;
       int size = path.size();
       for (int i = 0; i < size; ++i) {
         auto p = path.top();
         path.pop();
-        int x2 = cell_width_ * p.second + half_cell_width;
-        int y2 = cell_height_ * p.first + half_cell_height;
+        auto x2 = cell_width_ * p.second + half_cell_width;
+        auto y2 = cell_height_ * p.first + half_cell_height;
         if (i == 0) {
           x1 = AdjustPathLineNearPoints(x1, x2, half_path_edges_size_);
           y1 = AdjustPathLineNearPoints(y1, y2, half_path_edges_size_);

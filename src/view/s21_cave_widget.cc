@@ -3,8 +3,8 @@
 #include "../controller/s21_controller.h"
 
 void s21::CaveWidget::Initialize() {
-  cell_width_ = x_max_ / controller_->GetCaveCols();
-  cell_height_ = y_max_ / controller_->GetCaveRows();
+  cell_width_ = static_cast<double>(x_max_) / controller_->GetCaveCols();
+  cell_height_ = static_cast<double>(y_max_) / controller_->GetCaveRows();
 }
 
 void s21::CaveWidget::paintEvent(QPaintEvent* event) {

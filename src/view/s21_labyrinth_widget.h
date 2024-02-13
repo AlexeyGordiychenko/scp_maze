@@ -41,7 +41,8 @@ class LabyrinthWidget : public QWidget {
   Controller* controller_;
   int size = 500;
   int x_min_ = 1, y_min_ = 1, x_max_ = size + x_min_, y_max_ = size + y_min_;
-  int cell_width_ = 0, cell_height_ = 0, line_width_ = 2;
+  double cell_width_ = 0, cell_height_ = 0;
+  int line_width_ = 2;
 };
 }  // namespace s21
 #endif  // S21_MAZE_LABYRINT_WIDGET_H
