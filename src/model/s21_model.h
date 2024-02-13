@@ -6,8 +6,6 @@
 
 #include "s21_cave.h"
 #include "s21_maze.h"
-#include "s21_mazegenerator.h"
-
 namespace s21 {
 
 class Model {
