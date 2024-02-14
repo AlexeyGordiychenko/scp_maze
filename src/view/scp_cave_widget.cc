@@ -1,13 +1,13 @@
-#include "s21_cave_widget.h"
+#include "scp_cave_widget.h"
 
-#include "../controller/s21_controller.h"
+#include "../controller/scp_controller.h"
 
-void s21::CaveWidget::Initialize() {
+void scp::CaveWidget::Initialize() {
   cell_width_ = static_cast<double>(x_max_) / controller_->GetCaveCols();
   cell_height_ = static_cast<double>(y_max_) / controller_->GetCaveRows();
 }
 
-void s21::CaveWidget::paintEvent(QPaintEvent* event) {
+void scp::CaveWidget::paintEvent(QPaintEvent* event) {
   Q_UNUSED(event);
   QPainter painter(this);
   PaintInitialState(painter);

@@ -1,10 +1,10 @@
-#ifndef S21_MAZE_LABYRINT_WIDGET_H
-#define S21_MAZE_LABYRINT_WIDGET_H
+#ifndef SCP_MAZE_LABYRINT_WIDGET_H
+#define SCP_MAZE_LABYRINT_WIDGET_H
 
 #include <QPainter>
 #include <QWidget>
 
-namespace s21 {
+namespace scp {
 
 class Controller;
 
@@ -44,5 +44,5 @@ class LabyrinthWidget : public QWidget {
   double cell_width_ = 0, cell_height_ = 0;
   int line_width_ = 2;
 };
-}  // namespace s21
-#endif  // S21_MAZE_LABYRINT_WIDGET_H
+}  // namespace scp
+#endif  // SCP_MAZE_LABYRINT_WIDGET_H

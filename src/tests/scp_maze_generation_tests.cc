@@ -3,14 +3,14 @@
 #include <random>
 #include <utility>
 
-#include "../model/s21_maze.h"
+#include "../model/scp_maze.h"
 
 std::pair<int, int> getRandomPairInRange(int min, int max);
 
 TEST(MazeGeneratorTest, GenerateMazeValidDimensions) {
   int cols = 15;
   int rows = 10;
-  s21::Maze maze;
+  scp::Maze maze;
   maze.GenerateMaze(cols, rows);
   EXPECT_EQ(maze.GetRows(), rows);
   EXPECT_EQ(maze.GetCols(), cols);
@@ -19,7 +19,7 @@ TEST(MazeGeneratorTest, GenerateMazeValidDimensions) {
 TEST(MazeGeneratorTest, GenerateMazeInvalidDimensions) {
   int rows = -1;
   int cols = 100;
-  s21::Maze maze;
+  scp::Maze maze;
   EXPECT_TRUE(maze.Empty());
   maze.GenerateMaze(cols, rows);
   EXPECT_EQ(maze.GetRows(), 1);
@@ -29,7 +29,7 @@ TEST(MazeGeneratorTest, GenerateMazeInvalidDimensions) {
 TEST(MazeGeneratorTest, CheckMazeCorrectness) {
   int size = 50;
   for (int i = 0; i < 20; ++i) {
-    s21::Maze maze;
+    scp::Maze maze;
     maze.GenerateMaze(size, size, time(0));
     EXPECT_EQ(maze.GetRows(), size);
     EXPECT_EQ(maze.GetCols(), size);
@@ -47,7 +47,7 @@ TEST(MazeGeneratorTest, SerializationDeserialization) {
       {0, 1, 1, 1}, {0, 1, 1, 1}, {1, 1, 0, 1}, {0, 0, 0, 1}};
   std::vector<std::vector<int>> matrix2 = {
       {1, 0, 0, 0}, {1, 0, 0, 0}, {0, 0, 1, 0}, {1, 1, 1, 1}};
-  s21::Maze maze1;
+  scp::Maze maze1;
   maze1.Initialize("tests/files/correct_maze.txt");
   for (int i = 0; i < maze1.GetCols() * maze1.GetCols(); ++i) {
     EXPECT_EQ(maze1.GetRWalls()[i],
@@ -56,7 +56,7 @@ TEST(MazeGeneratorTest, SerializationDeserialization) {
               matrix2[i / maze1.GetCols()][i % maze1.GetCols()]);
   }
   maze1.Save("tests/files/saved_maze.txt");
-  s21::Maze maze2;
+  scp::Maze maze2;
   maze2.Initialize("tests/files/saved_maze.txt");
   for (int i = 0; i < maze1.GetCols() * maze1.GetCols(); ++i) {
     EXPECT_EQ(maze1.GetRWalls()[i],

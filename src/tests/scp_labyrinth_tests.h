@@ -1,14 +1,14 @@
-#ifndef S21_MAZE_LABYRINTH_TESTS_H
-#define S21_MAZE_LABYRINTH_TESTS_H
+#ifndef SCP_MAZE_LABYRINTH_TESTS_H
+#define SCP_MAZE_LABYRINTH_TESTS_H
 
 #include <gtest/gtest.h>
 
-#include "../model/s21_cave.h"
+#include "../model/scp_cave.h"
 
 class CaveTestCase : public ::testing::Test {
  protected:
   int kRndSeed = 42;
-  void TestCaveAlgorithm(s21::Cave& cave_init, s21::Cave& cave_res,
+  void TestCaveAlgorithm(scp::Cave& cave_init, scp::Cave& cave_res,
                          int birth_limit, int death_limit, int steps) {
     int count = 0;
     while (cave_init.CellularAutomaton(birth_limit, death_limit)) {
@@ -21,4 +21,4 @@ class CaveTestCase : public ::testing::Test {
   }
 };
 
-#endif  // S21_MAZE_LABYRINTH_TESTS_H
+#endif  // SCP_MAZE_LABYRINTH_TESTS_H

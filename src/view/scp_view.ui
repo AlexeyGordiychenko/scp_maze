@@ -79,7 +79,7 @@
        <string/>
       </property>
      </widget>
-     <widget class="s21::MazeWidget" name="mazeWidget" native="true">
+     <widget class="scp::MazeWidget" name="mazeWidget" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -313,7 +313,7 @@
        <string>Size (RxC)</string>
       </property>
      </widget>
-     <widget class="s21::CaveWidget" name="caveWidget" native="true">
+     <widget class="scp::CaveWidget" name="caveWidget" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -396,7 +396,7 @@
        <double>50.000000000000000</double>
       </property>
      </widget>
-     <widget class="s21::ValueSlider" name="caveBirthSlider">
+     <widget class="scp::ValueSlider" name="caveBirthSlider">
       <property name="geometry">
        <rect>
         <x>630</x>
@@ -454,7 +454,7 @@
        <string>Death</string>
       </property>
      </widget>
-     <widget class="s21::ValueSlider" name="caveDeathSlider">
+     <widget class="scp::ValueSlider" name="caveDeathSlider">
       <property name="geometry">
        <rect>
         <x>630</x>
@@ -626,20 +626,20 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>s21::MazeWidget</class>
+   <class>scp::MazeWidget</class>
    <extends>QWidget</extends>
-   <header>./view/s21_maze_widget.h</header>
+   <header>./view/scp_maze_widget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>s21::ValueSlider</class>
+   <class>scp::ValueSlider</class>
    <extends>QSlider</extends>
-   <header>./view/s21_value_slider.h</header>
+   <header>./view/scp_value_slider.h</header>
   </customwidget>
   <customwidget>
-   <class>s21::CaveWidget</class>
+   <class>scp::CaveWidget</class>
    <extends>QWidget</extends>
-   <header>./view/s21_cave_widget.h</header>
+   <header>./view/scp_cave_widget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

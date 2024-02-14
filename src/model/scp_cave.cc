@@ -1,27 +1,27 @@
-#include "s21_cave.h"
+#include "scp_cave.h"
 
 #include <algorithm>
 #include <random>
 #include <tuple>
 
-void s21::Cave::Initialize(const std::string filename) {
+void scp::Cave::Initialize(const std::string filename) {
   ClearData();
   std::tie(rows_, cols_) = ParseFile(filename, "cave", cells_);
   is_empty_ = false;
 }
 
-bool s21::Cave::Empty() const { return is_empty_; }
+bool scp::Cave::Empty() const { return is_empty_; }
 
-void s21::Cave::ClearData() {
+void scp::Cave::ClearData() {
   cells_.clear();
   is_empty_ = true;
 }
 
-int s21::Cave::GetRows() const { return rows_; }
-int s21::Cave::GetCols() const { return cols_; }
-const std::vector<bool>& s21::Cave::GetCells() const { return cells_; }
+int scp::Cave::GetRows() const { return rows_; }
+int scp::Cave::GetCols() const { return cols_; }
+const std::vector<bool>& scp::Cave::GetCells() const { return cells_; }
 
-void s21::Cave::GenerateCave(int chance, int rows, int cols, unsigned seed) {
+void scp::Cave::GenerateCave(int chance, int rows, int cols, unsigned seed) {
   rows_ = (rows >= 0) ? rows : 0;
   cols_ = (cols >= 0) ? cols : 0;
   chance = std::clamp(chance, 0, 100);
@@ -42,7 +42,7 @@ void s21::Cave::GenerateCave(int chance, int rows, int cols, unsigned seed) {
   }
 }
 
-bool s21::Cave::CellularAutomaton(int birth_limit, int death_limit) {
+bool scp::Cave::CellularAutomaton(int birth_limit, int death_limit) {
   std::vector<bool> new_cells(rows_ * cols_);
   bool res = false;
   for (int row = 0; row < rows_; ++row) {
@@ -65,7 +65,7 @@ bool s21::Cave::CellularAutomaton(int birth_limit, int death_limit) {
   return res;
 }
 
-int s21::Cave::CountNeighbors(int row, int col) {
+int scp::Cave::CountNeighbors(int row, int col) {
   int count = 0;
   for (int dr = -1; dr <= 1; ++dr) {
     for (int dc = -1; dc <= 1; ++dc) {
@@ -83,6 +83,6 @@ int s21::Cave::CountNeighbors(int row, int col) {
   return count;
 }
 
-void s21::Cave::Save(const std::string filename) {
+void scp::Cave::Save(const std::string filename) {
   SaveToFile(filename, rows_, cols_, cells_);
 }

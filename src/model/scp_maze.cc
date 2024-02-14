@@ -1,33 +1,33 @@
-#include "s21_maze.h"
+#include "scp_maze.h"
 
 #include <algorithm>
 #include <map>
 #include <tuple>
 
-void s21::Maze::Initialize(const std::string filename) {
+void scp::Maze::Initialize(const std::string filename) {
   ClearData();
   std::tie(rows_, cols_) = ParseFile(filename, "maze", r_walls_, b_walls_);
   is_empty_ = false;
 }
 
-bool s21::Maze::Empty() const { return is_empty_; }
+bool scp::Maze::Empty() const { return is_empty_; }
 
-void s21::Maze::ClearData() {
+void scp::Maze::ClearData() {
   r_walls_.clear();
   b_walls_.clear();
   is_empty_ = true;
 }
 
-int s21::Maze::GetRows() const { return rows_; }
-int s21::Maze::GetCols() const { return cols_; }
-const std::vector<bool>& s21::Maze::GetRWalls() const { return r_walls_; }
-const std::vector<bool>& s21::Maze::GetBWalls() const { return b_walls_; }
+int scp::Maze::GetRows() const { return rows_; }
+int scp::Maze::GetCols() const { return cols_; }
+const std::vector<bool>& scp::Maze::GetRWalls() const { return r_walls_; }
+const std::vector<bool>& scp::Maze::GetBWalls() const { return b_walls_; }
 
-void s21::Maze::Save(const std::string filename) {
+void scp::Maze::Save(const std::string filename) {
   SaveToFile(filename, rows_, cols_, r_walls_, b_walls_);
 }
 
-void s21::Maze::GenerateMaze(int cols, int rows, int seed) {
+void scp::Maze::GenerateMaze(int cols, int rows, int seed) {
   cols = std::clamp(cols, 1, 50);
   rows = std::clamp(rows, 1, 50);
   srand(seed);
@@ -58,7 +58,7 @@ void s21::Maze::GenerateMaze(int cols, int rows, int seed) {
   this->is_empty_ = false;
 }
 
-void s21::Maze::PlaceRightWalls() {
+void scp::Maze::PlaceRightWalls() {
   for (int i = 0; i < cols_; i++) {
     if (i == cols_ - 1) {
       right_walls_[current_row_index_][i] = 1;
@@ -90,7 +90,7 @@ void s21::Maze::PlaceRightWalls() {
   }
 }
 
-void s21::Maze::PlaceBottomWalls() {
+void scp::Maze::PlaceBottomWalls() {
   std::map<int, int> set_size;
   for (int i = 0; i < cols_; i++) {
     set_size[row_sets_[i]] += 1;
@@ -105,7 +105,7 @@ void s21::Maze::PlaceBottomWalls() {
   }
 }
 
-void s21::Maze::MarkupCells() {
+void scp::Maze::MarkupCells() {
   for (int i = 0; i < cols_; i++) {
     if (current_row_index_ > 0 &&
         IsBottomWall(current_row_index_ - 1, i) == 1) {
@@ -117,7 +117,7 @@ void s21::Maze::MarkupCells() {
   }
 }
 
-bool s21::Maze::IsCanMoveLeft() {
+bool scp::Maze::IsCanMoveLeft() {
   bool result = true;
   if ((current_.second - 1) < 0 ||
       visited_[current_.first][current_.second - 1] ||
@@ -126,7 +126,7 @@ bool s21::Maze::IsCanMoveLeft() {
   return result;
 }
 
-bool s21::Maze::IsCanMoveRight() {
+bool scp::Maze::IsCanMoveRight() {
   bool result = true;
   if ((current_.second + 1) >= cols_ ||
       visited_[current_.first][current_.second + 1] ||
@@ -135,7 +135,7 @@ bool s21::Maze::IsCanMoveRight() {
   return result;
 }
 
-bool s21::Maze::IsCanMoveUp() {
+bool scp::Maze::IsCanMoveUp() {
   bool result = true;
   if ((current_.first - 1) < 0 ||
       visited_[current_.first - 1][current_.second] ||
@@ -144,7 +144,7 @@ bool s21::Maze::IsCanMoveUp() {
   return result;
 }
 
-bool s21::Maze::IsCanMoveDown() {
+bool scp::Maze::IsCanMoveDown() {
   bool result = true;
   if ((current_.first + 1) >= rows_ ||
       visited_[current_.first + 1][current_.second] ||
@@ -153,11 +153,11 @@ bool s21::Maze::IsCanMoveDown() {
   return result;
 }
 
-bool s21::Maze::IsBWall(int r, int c) { return b_walls_[r * cols_ + c]; }
+bool scp::Maze::IsBWall(int r, int c) { return b_walls_[r * cols_ + c]; }
 
-bool s21::Maze::IsRWall(int r, int c) { return r_walls_[r * cols_ + c]; }
+bool scp::Maze::IsRWall(int r, int c) { return r_walls_[r * cols_ + c]; }
 
-std::stack<std::pair<int, int>> s21::Maze::FindPath(std::pair<int, int> start,
+std::stack<std::pair<int, int>> scp::Maze::FindPath(std::pair<int, int> start,
                                                     std::pair<int, int> end) {
   start.first = std::clamp(start.first, 0, rows_ - 1);
   start.second = std::clamp(start.second, 0, cols_ - 1);

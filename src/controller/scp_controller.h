@@ -1,12 +1,12 @@
-#ifndef S21_MAZE_CONTROLLER_H
-#define S21_MAZE_CONTROLLER_H
+#ifndef SCP_MAZE_CONTROLLER_H
+#define SCP_MAZE_CONTROLLER_H
 
 #include <stack>
 #include <string>
 #include <tuple>
 #include <vector>
 
-namespace s21 {
+namespace scp {
 
 class Model;
 
@@ -45,5 +45,5 @@ class Controller {
  private:
   Model* model_;
 };
-}  // namespace s21
-#endif  // S21_MAZE_CONTROLLER_H
+}  // namespace scp
+#endif  // SCP_MAZE_CONTROLLER_H

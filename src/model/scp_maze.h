@@ -1,13 +1,13 @@
-#ifndef S21_MAZE_MAZE_H
-#define S21_MAZE_MAZE_H
+#ifndef SCP_MAZE_MAZE_H
+#define SCP_MAZE_MAZE_H
 
 #include <stack>
 #include <string>
 #include <vector>
 
-#include "s21_labyrinth.h"
+#include "scp_labyrinth.h"
 
-namespace s21 {
+namespace scp {
 
 class Maze : public Labyrinth {
  public:
@@ -45,5 +45,5 @@ class Maze : public Labyrinth {
   bool IsBWall(int r, int c);
   bool IsRWall(int r, int c);
 };
-}  // namespace s21
-#endif  // S21_MAZE_MAZE_H
+}  // namespace scp
+#endif  // SCP_MAZE_MAZE_H

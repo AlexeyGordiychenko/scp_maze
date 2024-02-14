@@ -1,13 +1,13 @@
-#ifndef S21_MAZE_CAVE_H
-#define S21_MAZE_CAVE_H
+#ifndef SCP_MAZE_CAVE_H
+#define SCP_MAZE_CAVE_H
 
 #include <random>
 #include <string>
 #include <vector>
 
-#include "s21_labyrinth.h"
+#include "scp_labyrinth.h"
 
-namespace s21 {
+namespace scp {
 
 class Cave : public Labyrinth {
  public:
@@ -26,5 +26,5 @@ class Cave : public Labyrinth {
   void ClearData();
   int CountNeighbors(int row, int col);
 };
-}  // namespace s21
-#endif  // S21_MAZE_CAVE_H
+}  // namespace scp
+#endif  // SCP_MAZE_CAVE_H

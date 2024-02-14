@@ -1,11 +1,11 @@
-#include "s21_view.h"
+#include "scp_view.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
 
-#include "s21_labyrinth_widget.h"
+#include "scp_labyrinth_widget.h"
 
-s21::View::View(Controller* controller, QWidget* parent)
+scp::View::View(Controller* controller, QWidget* parent)
     : QMainWindow(parent), ui_(new Ui::View), controller_(controller) {
   ui_->setupUi(this);
 
@@ -46,13 +46,13 @@ s21::View::View(Controller* controller, QWidget* parent)
   ui_->caveWidget->SetController(controller);
 }
 
-s21::View::~View() { delete ui_; }
+scp::View::~View() { delete ui_; }
 
-void s21::View::OpenMazeFile() { OpenFile(ui_->mazeFilePath); }
+void scp::View::OpenMazeFile() { OpenFile(ui_->mazeFilePath); }
 
-void s21::View::OpenCaveFile() { OpenFile(ui_->caveFilePath); }
+void scp::View::OpenCaveFile() { OpenFile(ui_->caveFilePath); }
 
-void s21::View::OpenFile(QComboBox* file_path) {
+void scp::View::OpenFile(QComboBox* file_path) {
   QString filename = QFileDialog::getOpenFileName(this, tr("Open file:"), "~/",
                                                   tr("Text Files (*.txt)"));
   if (filename.isEmpty()) return;
@@ -69,12 +69,12 @@ void s21::View::OpenFile(QComboBox* file_path) {
   file_path->setCurrentIndex(index);
 }
 
-void s21::View::Render(s21::LabyrinthWidget* element) {
+void scp::View::Render(scp::LabyrinthWidget* element) {
   element->Initialize();
   element->update();
 }
 
-void s21::View::FilePathChange(QComboBox* element) {
+void scp::View::FilePathChange(QComboBox* element) {
   std::string filename = element->currentText().toStdString();
   if (filename.empty()) return;
   auto index = element->findText("");
@@ -93,7 +93,7 @@ void s21::View::FilePathChange(QComboBox* element) {
   }
 }
 
-void s21::View::GenerateLabyrinth(QComboBox* element) {
+void scp::View::GenerateLabyrinth(QComboBox* element) {
   std::string filename = element->currentText().toStdString();
   if (!filename.empty()) {
     element->addItem("");
@@ -111,7 +111,7 @@ void s21::View::GenerateLabyrinth(QComboBox* element) {
   }
 }
 
-void s21::View::GenerateCaveNextStep() {
+void scp::View::GenerateCaveNextStep() {
   auto res = controller_->CaveCellularAutomaton(ui_->caveBirthSlider->value(),
                                                 ui_->caveDeathSlider->value());
   if (res)
@@ -120,7 +120,7 @@ void s21::View::GenerateCaveNextStep() {
     StopTimer();
 }
 
-void s21::View::GenerateCavePlay() {
+void scp::View::GenerateCavePlay() {
   if (timer_.isActive()) {
     StopTimer();
   } else {
@@ -128,19 +128,19 @@ void s21::View::GenerateCavePlay() {
   }
 }
 
-void s21::View::StopTimer() {
+void scp::View::StopTimer() {
   timer_.stop();
   ui_->cavePlay->setIcon(QIcon::fromTheme("media-playback-start"));
   ui_->cavePlay->setText("Play");
 }
 
-void s21::View::StartTimer() {
+void scp::View::StartTimer() {
   timer_.start(ui_->caveDelay->value());
   ui_->cavePlay->setIcon(QIcon::fromTheme("media-playback-stop"));
   ui_->cavePlay->setText("Stop");
 }
 
-void s21::View::SaveLabyrinth(QComboBox* element) {
+void scp::View::SaveLabyrinth(QComboBox* element) {
   auto labyrinth_text = ui_->tabWidget->tabText(ui_->tabWidget->currentIndex());
   QFileDialog save_dialog(this);
   save_dialog.setDefaultSuffix(".txt");

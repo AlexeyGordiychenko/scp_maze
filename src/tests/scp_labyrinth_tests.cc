@@ -1,4 +1,4 @@
-#include "s21_labyrinth_tests.h"
+#include "scp_labyrinth_tests.h"
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

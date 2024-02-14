@@ -1,8 +1,8 @@
-#include "s21_maze_widget.h"
+#include "scp_maze_widget.h"
 
-#include "../controller/s21_controller.h"
+#include "../controller/scp_controller.h"
 
-void s21::MazeWidget::Initialize() {
+void scp::MazeWidget::Initialize() {
   cell_width_ = static_cast<double>(x_max_) / controller_->GetMazeCols();
   cell_height_ = static_cast<double>(y_max_) / controller_->GetMazeRows();
   path_edges_size_ = std::min(std::min(cell_width_, cell_height_) / 2, 30.0);
@@ -11,7 +11,7 @@ void s21::MazeWidget::Initialize() {
   path_end_ = QPoint();
 }
 
-void s21::MazeWidget::paintEvent(QPaintEvent* event) {
+void scp::MazeWidget::paintEvent(QPaintEvent* event) {
   Q_UNUSED(event);
   QPainter painter(this);
   PaintInitialState(painter);
@@ -25,7 +25,7 @@ void s21::MazeWidget::paintEvent(QPaintEvent* event) {
   RenderPath(painter);
 }
 
-void s21::MazeWidget::mousePressEvent(QMouseEvent* event) {
+void scp::MazeWidget::mousePressEvent(QMouseEvent* event) {
   if (!controller_->EmptyMaze()) {
     int x = event->position().x();
     int y = event->position().y();
@@ -43,12 +43,12 @@ void s21::MazeWidget::mousePressEvent(QMouseEvent* event) {
   }
 }
 
-int s21::MazeWidget::AdjustPathLineNearPoints(int c1, int c2, int k) {
+int scp::MazeWidget::AdjustPathLineNearPoints(int c1, int c2, int k) {
   if (c1 != c2 && k) c1 = (c1 < c2) ? c1 + k + 1 : c1 - k;
   return c1;
 }
 
-void s21::MazeWidget::RenderMaze(QPainter& painter) {
+void scp::MazeWidget::RenderMaze(QPainter& painter) {
   auto r_walls = controller_->GetMazeRWalls();
   auto b_walls = controller_->GetMazeBWalls();
   auto rows = controller_->GetMazeRows(), cols = controller_->GetMazeCols();
@@ -74,7 +74,7 @@ void s21::MazeWidget::RenderMaze(QPainter& painter) {
   }
 }
 
-void s21::MazeWidget::RenderPonts(QPainter& painter) {
+void scp::MazeWidget::RenderPonts(QPainter& painter) {
   if (!path_start_.isNull() || !path_end_.isNull()) {
     auto k = path_edges_size_ / 2 - 1;
     if (!path_start_.isNull()) {
@@ -92,7 +92,7 @@ void s21::MazeWidget::RenderPonts(QPainter& painter) {
   }
 }
 
-void s21::MazeWidget::RenderPath(QPainter& painter) {
+void scp::MazeWidget::RenderPath(QPainter& painter) {
   if (!path_start_.isNull() && !path_end_.isNull()) {
     std::stack<std::pair<int, int>> path = controller_->FindPath(
         {path_start_.y() / cell_height_, path_start_.x() / cell_width_},

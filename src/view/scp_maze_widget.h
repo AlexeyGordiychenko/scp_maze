@@ -1,12 +1,12 @@
-#ifndef S21_MAZE_MAZE_WIDGET_H
-#define S21_MAZE_MAZE_WIDGET_H
+#ifndef SCP_MAZE_MAZE_WIDGET_H
+#define SCP_MAZE_MAZE_WIDGET_H
 
 #include <QMouseEvent>
 #include <QPainter>
 
-#include "s21_labyrinth_widget.h"
+#include "scp_labyrinth_widget.h"
 
-namespace s21 {
+namespace scp {
 
 class Controller;
 
@@ -32,5 +32,5 @@ class MazeWidget : public LabyrinthWidget {
   QPoint path_start_, path_end_;
   int path_edges_size_;
 };
-}  // namespace s21
-#endif  // S21_MAZE_MAZE_WIDGET_H
+}  // namespace scp
+#endif  // SCP_MAZE_MAZE_WIDGET_H

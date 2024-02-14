@@ -3,10 +3,10 @@
 #include <random>
 #include <utility>
 
-#include "../model/s21_maze.h"
+#include "../model/scp_maze.h"
 
 TEST(PathfinderTest, PathExist) {
-  s21::Maze maze;
+  scp::Maze maze;
   maze.Initialize("tests/files/correct_maze.txt");
   std::pair<int, int> start = {0, 0};
   std::pair<int, int> end = {maze.GetRows() - 1, maze.GetCols() - 1};
@@ -29,7 +29,7 @@ TEST(PathfinderTest, PathExist) {
 }
 
 TEST(PathfinderTest, NoPathExist) {
-  s21::Maze maze;
+  scp::Maze maze;
   maze.Initialize("tests/files/broken_maze.txt");
   std::pair<int, int> start = {0, 0};
   std::pair<int, int> end = {maze.GetRows() - 1, maze.GetCols() - 1};
@@ -38,7 +38,7 @@ TEST(PathfinderTest, NoPathExist) {
 }
 
 TEST(PathfinderTest, InValidDimensions) {
-  s21::Maze maze;
+  scp::Maze maze;
   maze.Initialize("tests/files/correct_maze.txt");
   std::pair<int, int> start = {-1, -1};
   std::pair<int, int> end = {maze.GetRows() + 10, maze.GetCols() + 10};

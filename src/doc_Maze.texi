@@ -1,10 +1,10 @@
 \input texinfo
-@setfilename S21_Maze.info
+@setfilename SCP_Maze.info
 
-@settitle S21 Maze Program Documentation
+@settitle SCP Maze Program Documentation
 
 @titlepage
-@title S21 Maze
+@title SCP Maze
 @subtitle Program Documentation
 @author by elidacon
 @end titlepage
@@ -34,7 +34,7 @@ The 'Cave' tab also features two action buttons: 'Next step' and 'Play.' Pressin
 @node Usage
 @section Usage
 
-To install the program, you first need to navigate to the directory containing the program's source files. Run 'make install'. After the installation process is completed, you can start the program by running either 'make open' or './install/s21_Maze'
+To install the program, you first need to navigate to the directory containing the program's source files. Run 'make install'. After the installation process is completed, you can start the program by running either 'make open' or './install/scp_Maze'
 
 @node Available buttons
 @section Available buttons

@@ -1,17 +1,17 @@
-#ifndef S21_MAZE_VIEW_H
-#define S21_MAZE_VIEW_H
+#ifndef SCP_MAZE_VIEW_H
+#define SCP_MAZE_VIEW_H
 
 #include <QMainWindow>
 #include <QTimer>
 
-#include "../controller/s21_controller.h"
-#include "ui_s21_view.h"
+#include "../controller/scp_controller.h"
+#include "ui_scp_view.h"
 
 namespace Ui {
 class View;
 }
 
-namespace s21 {
+namespace scp {
 
 class LabyrinthWidget;
 
@@ -48,5 +48,5 @@ class View : public QMainWindow {
   QTimer timer_;
 };
 
-}  // namespace s21
-#endif  // S21_MAZE_VIEW_H
+}  // namespace scp
+#endif  // SCP_MAZE_VIEW_H

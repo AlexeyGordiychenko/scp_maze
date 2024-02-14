@@ -19,13 +19,13 @@ BUILD_DIR=build
 INSTALL_DIR=install
 
 # Files
-SRCS_TEST=$(wildcard $(TEST_DIR)/s21_*.cc $(MODEL_DIR)/s21_*.cc)
+SRCS_TEST=$(wildcard $(TEST_DIR)/scp_*.cc $(MODEL_DIR)/scp_*.cc)
 OBJS_TEST=$(patsubst %.cc, $(OBJ_DIR_TEST)/%.o, $(notdir $(SRCS_TEST)))
 OBJS_GCOV=$(patsubst %.cc, $(OBJ_DIR_GCOV)/%.o, $(notdir $(SRCS_TEST)))
-CLANG_FILES=$(shell find $(SRC_DIR) \( -name "s21_*.cc" -o -name "s21_*.h" \) -print)
+CLANG_FILES=$(shell find $(SRC_DIR) \( -name "scp_*.cc" -o -name "scp_*.h" \) -print)
 
 # Builds
-PROGRAM=s21_Maze
+PROGRAM=scp_Maze
 TEST=test
 TEST_GCOV=$(TEST)_gcov
 TEST_BUILD=$(TEST)_build
@@ -85,12 +85,12 @@ open:
 
 gcov_report: $(TEST_GCOV)
 	mkdir -p $(GCOV_DIR)
-	gcovr --html-details -o $(GCOV_DIR)/index.html --filter $(MODEL_DIR)/s21_maze.cc --filter $(MODEL_DIR)/s21_cave.cc
+	gcovr --html-details -o $(GCOV_DIR)/index.html --filter $(MODEL_DIR)/scp_maze.cc --filter $(MODEL_DIR)/scp_cave.cc
 	open $(GCOV_DIR)/index.html
 
 lcov_report: $(TEST_GCOV)
 	mkdir -p $(GCOV_DIR)
-	lcov --capture --directory $(SRC_DIR) --include "$(CURDIR)/model/s21_maze.cc" --include "$(CURDIR)/model/s21_cave.cc" --output-file $(GCOV_DIR)/coverage.info --no-external
+	lcov --capture --directory $(SRC_DIR) --include "$(CURDIR)/model/scp_maze.cc" --include "$(CURDIR)/model/scp_cave.cc" --output-file $(GCOV_DIR)/coverage.info --no-external
 	genhtml -o $(GCOV_DIR) $(GCOV_DIR)/coverage.info 
 	open $(GCOV_DIR)/index.html
 
@@ -100,7 +100,7 @@ dvi:
 
 dist:
 	mkdir -p $(PROGRAM)/src
-	@cp s21_* Makefile $(PROGRAM)/src 2>/dev/null || true
+	@cp scp_* Makefile $(PROGRAM)/src 2>/dev/null || true
 	@cp -r model/ controller/ view/ $(PROGRAM)/src 2>/dev/null || true
 	tar cvzf $(PROGRAM).tgz $(PROGRAM)/
 	rm -rf $(PROGRAM)/

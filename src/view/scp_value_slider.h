@@ -1,9 +1,9 @@
-#ifndef S21_MAZE_VALUE_SLIDER_H
-#define S21_MAZE_VALUE_SLIDER_H
+#ifndef SCP_MAZE_VALUE_SLIDER_H
+#define SCP_MAZE_VALUE_SLIDER_H
 
 #include <QWidget>
 
-namespace s21 {
+namespace scp {
 
 class ValueSlider : public QSlider {
  public:
@@ -24,5 +24,5 @@ class ValueSlider : public QSlider {
                      QString::number(this->value()));
   }
 };
-}  // namespace s21
-#endif  // S21_MAZE_VALUE_SLIDER_H
+}  // namespace scp
+#endif  // SCP_MAZE_VALUE_SLIDER_H
