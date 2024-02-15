@@ -2,6 +2,36 @@
 
 Learning about mazes and caves, including the basic algorithms of their handling, such as: generation, rendering, solving.
 
+## My part of the project
+
+My part was to:
++ Make UI for the project
++ Make files parser and saver
++ [Part 4](#part-4-bonus-cave-generation) (caves) of the task
+
+So for my code you can check files:
+
++ [controller/](./src/controller)
++ [view/](./src/view)
++ [model/scp_cave.cc](./src/model/scp_cave.cc)
++ [model/scp_cave.h](./src/model/scp_cave.h)
++ [model/scp_labyrinth.h](./src/model/scp_labyrinth.h)
++ [model/scp_model.cc](./src/model/scp_model.cc)
++ [model/scp_model.h](./src/model/scp_model.h)
++ [tests/scp_cave_tests.cc](./src/tests/scp_cave_tests.cc)
++ [tests/scp_labyrinth_tests.cc](./src/tests/scp_labyrinth_tests.cc)
++ [tests/scp_labyrinth_tests.h](./src/tests/scp_labyrinth_tests.h)
+
+## Score:
+
+The final score is 120% (max).
+
+The program was developed with frontend on QT 6.5.2 (see more in [documentation](./src/doc_Maze.pdf)).
+
+![maze](./misc/maze.png)
+
+![cave](./misc/cave.png)
+
 ## Task
 
 ### Part 1. Implementation of the Maze project
